@@ -5,7 +5,7 @@
 * initiate smart filters business logic
 
 ## rollout
-* create open assets for restocking
+* create open assets for restocking :heavy_check_mark:
 * create data streams for IoT devices
 
 ## web
