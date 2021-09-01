@@ -1,7 +1,7 @@
 # todo
 
 ## prep
-* get address from every server by supplying user and key manually,
+* get address from every server by supplying user and key manually :heavy_check_mark:
 * initiate smart filters business logic
 
 ## rollout
