@@ -1,4 +1,4 @@
-# todo
+# TODO
 
 ## prep
 * get address from every server by supplying user and key manually :heavy_check_mark:
