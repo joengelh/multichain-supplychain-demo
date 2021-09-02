@@ -18,8 +18,8 @@ client = c = mcrpc.RpcClient(
         bank['password']
     )
 try:
-    #create EUR asset class with 0 balance, issuable and devidable by 0.01 
-    client.issue(client.listaddresses()[0]['address'], {"name":"EUR","open":True},0,0.01)
+    #create EUR asset class with 100 mil € balance, issuable and devidable by 0.01 
+    client.issue(client.listaddresses()[0]['address'], {"name":"EUR","open":True},100000000,0.01)
 except:
     pass
 
@@ -31,24 +31,25 @@ class helloWorld(Resource):
         return {"data":"hi"}
 
 class balance(Resource):
-    def post(self, account):
-        request.get_json()
-        client.importaddress(account)
-        client.getaddressbalances(account)
-        return {"data":"SUCCESS"}
+    def post(self):
+        data = request.get_json()
+        client.importaddress(data['account'])
+        return {"data":client.getaddressbalances(data['account'])}
 
 class fund(Resource):
-    def post(self, account, amount):
-        client.issuemore(account,"EUR",amount)
-        return {"data":"SUCCESS"}
+    def post(self):
+        data = request.get_json()
+        client.issuemore(data['account'],"EUR",data['amount'])
+        return {"data":client.getaddressbalances(data['account'])}
 
 class refund(Resource):
-    def post(self, amount):
+    def post(self):
+        data = request.get_json()
         pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         try:
-            client.sendasset(burnAddress,"EUR",amount)
-            return {"data":"SUCCESS"}
+            client.sendasset(burnAddress,"EUR",data['amount'])
+            return {"data":data['amount']}
         except:
             return {"data":"ERROR: not enough funds available"}
 
@@ -59,12 +60,3 @@ api.add_resource(refund, '/api/v1/refund')
 
 if __name__ == '__main__':
     app.run()
-
-
-#for server in tradableServers:
-    #issue asset class for every server, quantitiy zero, devisible by 1
-#    client.issue(client.listaddresses()[0]['address'], {"name":server,"open":True},0,1)
-#client.create("steam","iot001",False)
-#client.issue(client.listaddresses()[0]['address'],"dellserver",600,1)
-#client.sendasset(burnAddress,"hpeServer",300)
-#
