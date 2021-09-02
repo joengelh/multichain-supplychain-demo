@@ -47,6 +47,7 @@ class refund(Resource):
         data = request.get_json()
         pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
         burnAddress = pattern.findall(str(client.getinfo()))[0]
+        client.importaddress(burnAddress])
         try:
             client.sendasset(burnAddress,"EUR",data['amount'])
             return {"data":data['amount']}
