@@ -1,15 +1,24 @@
+import mcrpc
+import ast
+import os
+from dotenv import load_dotenv
+import re
 import flask
 from flask import request, jsonify
+
+def rpcConnect(
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 # Create some test data for the diffrent users
 users = [
-    {'name': 'logistics'}
+    {
+        'name': 'logistics',
+        'user': '
+    },
     {'name': 'customer'}
 ]
-
 
 @app.route('/', methods=['GET'])
 def home():
