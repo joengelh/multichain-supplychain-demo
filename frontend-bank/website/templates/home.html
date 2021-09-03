@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Home</h1>
+<ul class="list-group list-group-flush" id="notes">
+
+  <li class="list-group-item">
+    First Name: {{ user.first_name }}
+  </li>
+  <li class="list-group-item">
+    Email Address: {{ user.email }}
+  </li>
+  <li class="list-group-item">
+    Wallet Address: {{ user.wallet }}
+  </li>
+  <li class="list-group-item">
+    Current Balance: {{ balance }} EUR
+  </li>
+
+</ul>
+{% endblock %}
