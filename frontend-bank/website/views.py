@@ -25,8 +25,6 @@ def home():
 def fund():
     if request.method == 'POST':
         amount = request.form['amount']
-        print(amount)
-        print(type(amount))
         requests.post('http://localhost:5001/api/v1/fund', 
             json={'account': current_user.wallet, 'amount': float(amount)})
         flash('Funding Successful!', category='success')
