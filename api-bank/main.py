@@ -41,6 +41,19 @@ class balance(Resource):
         balanceEur = next((item for item in balances if item["name"] == "EUR"), None)
         return {"data":balanceEur}
 
+#create path to get bank address
+class ownAddress(Resource):
+    def get(self):
+        return {"data":client.listaddresses()[0]['address']}
+
+#create path to get nrun address
+class burnAddress(Resource):
+    def get(self):
+        pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
+        burnAddress = pattern.findall(str(client.getinfo()))[0]
+        return {"data":burnAddress}
+
+
 #create path to add amount funds to address
 class fund(Resource):
     def post(self):
@@ -63,6 +76,8 @@ class refund(Resource):
             return {"data":"ERROR, not enough funds"}
 
 api.add_resource(helloWorld, '/')
+api.add_resource(ownAddress, '/api/v1/ownAddress')
+api.add_resource(burnAddress, '/api/v1/burnAddress')
 api.add_resource(balance, '/api/v1/balance')
 api.add_resource(fund, '/api/v1/fund')
 api.add_resource(refund, '/api/v1/refund')

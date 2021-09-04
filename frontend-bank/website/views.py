@@ -33,12 +33,17 @@ def fund():
 @views.route('/refund', methods=['GET', 'POST'])
 @login_required
 def refund():
-    if request.method == 'POST':
-        amount = request.form['amount']
-        requests.post('http://localhost:5001/api/v1/refund', 
-            json={'amount': float(amount)})
-        flash('Refunding Successful!', category='success')
-    return render_template("refund.html", user=current_user)
+    ownAddress = requests.get('http://localhost:5001/api/v1/ownAddress').json()
+    if ownAddress["data"] == current_user.wallet:    
+        if request.method == 'POST':
+            amount = request.form['amount']
+            requests.post('http://localhost:5001/api/v1/refund', 
+                json={'amount': float(amount)})
+            flash('Refunding Successful!', category='success')
+        return render_template("refund.html", user=current_user, balance=getBalance(current_user))
+    else:
+        burnAddress = requests.get('http://localhost:5001/api/v1/burnAddress').json()
+        return render_template("burn.html", user=current_user, address=burnAddress['data'])
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
