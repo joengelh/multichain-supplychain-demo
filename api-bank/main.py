@@ -48,7 +48,7 @@ class ownAddress(Resource):
 #create path to get nrun address
 class burnAddress(Resource):
     def get(self):
-        pattern = re.compile('(?<=burnaddress': ')[0-9][A-Za-z0-9]+')
+        pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         return {'data':burnAddress}
 
@@ -64,7 +64,7 @@ class fund(Resource):
 class refund(Resource):
     def post(self):
         data = request.get_json()
-        pattern = re.compile('(?<=burnaddress': ')[0-9][A-Za-z0-9]+')
+        pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         client.importaddress(burnAddress)
         try:
