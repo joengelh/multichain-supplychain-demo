@@ -18,5 +18,9 @@ client = c = mcrpc.RpcClient(
     )
 
 #make shure all streams required for private data transmission are set up
-for item in ["pubkeys","items","access"]:
-    client.create("stream", item, True)
+try:
+    for item in ["pubkeys","items","access"]:
+        client.create("stream", item, True)
+except: 
+    pass
+
