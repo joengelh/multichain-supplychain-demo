@@ -18,7 +18,7 @@ client = c = mcrpc.RpcClient(
     )
 try:
     #create EUR asset class with 100 mil € balance, issuable and devidable by 0.01 
-    client.issue(client.listaddresses()[0]['address'], {"name":"EUR","open":True},100000000,0.01)
+    client.issue(client.listaddresses()[0]['address'], {'name':'EUR','open':True},100000000,0.01)
 except:
     pass
 
@@ -29,7 +29,7 @@ api = Api(app)
 #create root path
 class helloWorld(Resource):
     def get(self):
-        return {"data":"hi"}
+        return {'data':'hi'}
 
 #create path to check balance
 class balance(Resource):
@@ -37,41 +37,41 @@ class balance(Resource):
         data = request.get_json()
         client.importaddress(data['account'])
         balances = client.getaddressbalances(data['account'])
-        balanceEur = next((item for item in balances if item["name"] == "EUR"), None)
-        return {"data":balanceEur}
+        balanceEur = next((item for item in balances if item['name'] == 'EUR'), None)
+        return {'data':balanceEur}
 
 #create path to get bank address
 class ownAddress(Resource):
     def get(self):
-        return {"data":client.listaddresses()[0]['address']}
+        return {'data':client.listaddresses()[0]['address']}
 
 #create path to get nrun address
 class burnAddress(Resource):
     def get(self):
-        pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
+        pattern = re.compile('(?<=burnaddress': ')[0-9][A-Za-z0-9]+')
         burnAddress = pattern.findall(str(client.getinfo()))[0]
-        return {"data":burnAddress}
+        return {'data':burnAddress}
 
 #create path to add amount funds to address
 class fund(Resource):
     def post(self):
         data = request.get_json()
-        client.issuemore(data['account'],"EUR",data['amount'])
+        client.issuemore(data['account'],'EUR',data['amount'])
         client.importaddress(data['account'])
-        return {"data":client.getaddressbalances(data['account'])}
+        return {'data':client.getaddressbalances(data['account'])}
 
 #create path to refund
 class refund(Resource):
     def post(self):
         data = request.get_json()
-        pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
+        pattern = re.compile('(?<=burnaddress': ')[0-9][A-Za-z0-9]+')
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         client.importaddress(burnAddress)
         try:
-            client.sendasset(burnAddress,"EUR",data['amount'])
-            return {"data":data['amount']}
+            client.sendasset(burnAddress,'EUR',data['amount'])
+            return {'data':data['amount']}
         except:
-            return {"data":"ERROR, not enough funds"}
+            return {'data':'ERROR, not enough funds'}
 
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')

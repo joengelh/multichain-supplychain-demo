@@ -24,7 +24,7 @@ api = Api(app)
 #create root path
 class helloWorld(Resource):
     def get(self):
-        return {"data":"hi"}
+        return {'data':'hi'}
 
 #create path to check balance, requires asset
 class balance(Resource):
@@ -32,22 +32,22 @@ class balance(Resource):
         data = request.get_json()
         balances = client.getaddressbalances(client.listaddresses()[0]['address'])
         if balances != 0:
-            balanceAsset = next((item for item in balances if item["name"] == data["asset"]), None)
-            return {"data":balanceAsset["qty"]}
+            balanceAsset = next((item for item in balances if item['name'] == data['asset']), None)
+            return {'data':balanceAsset['qty']}
         else: 
-            return {"data":balances}
+            return {'data':balances}
 
 #create path to check balance
 class inventory(Resource):
     def get(self):
         data = request.get_json()
         balances = client.getaddressbalances(client.listaddresses()[0]['address'])
-        return {"data":balances}
+        return {'data':balances}
 
 #create path to get address
 class ownAddress(Resource):
     def get(self):
-        return {"data":client.listaddresses()[0]['address']}
+        return {'data':client.listaddresses()[0]['address']}
 
 #create path to issue assets
 class issue(Resource):
@@ -55,26 +55,35 @@ class issue(Resource):
         data = request.get_json()
         try:
             client.issue(client.listaddresses()[0]['address'], 
-                {"name":data["asset"],"open":True},0,1)
-            return {"data":"Asset issued!"}
+                {'name':data['asset'],'open':True},0,1)
+            return {'data':'Asset issued!'}
         except:
-            return {"data":"Asset already issued!"}
+            return {'data':'Asset already issued!'}
 
 #create path to add amount funds to address
 class issueMore(Resource):
     def post(self):
         data = request.get_json()
         client.issuemore(client.listaddresses()[0]['address'],
-            data["asset"],data['amount'])
-        return {"data":data["amount"]}
+            data['asset'],data['amount'])
+        return {'data':data['amount']}
 
-#create path to refund
+#create path to send
 class send(Resource):
     def post(self):
         data = request.get_json()
-        client.sendasset(data["address"],data["asset"],data['amount'])
-        return {"data":data['amount']}
-        
+        client.sendasset(data['address'],data['asset'],data['amount'])
+        return {'data':data['amount']}
+
+#create path to create exchange requireing asset and price
+class atomicExchange(Resource):
+    def post(self):
+        data = request.get_json()
+        lock = client.preparelockunspent({data["asset"]:1})
+        rawExchange = client.createrawexchange(lock["txid"],
+            lock["vout"],{"EUR":data["price"]})
+        return {'data':rawExchange}
+
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(balance, '/api/v1/balance')
@@ -82,6 +91,7 @@ api.add_resource(inventory, '/api/v1/inventory')
 api.add_resource(issue, '/api/v1/issue')
 api.add_resource(issueMore, '/api/v1/issueMore')
 api.add_resource(send, '/api/v1/send')
+api.add_resource(atomicExchange, '/api/v1/atomicExchange')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5003)
