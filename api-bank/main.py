@@ -52,7 +52,6 @@ class burnAddress(Resource):
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         return {"data":burnAddress}
 
-
 #create path to add amount funds to address
 class fund(Resource):
     def post(self):
