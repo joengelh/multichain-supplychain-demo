@@ -49,15 +49,21 @@ class ownAddress(Resource):
     def get(self):
         return {'data':client.listaddresses()[0]['address']}
 
-#create path to add amount funds to address, issuing if required
-class issueMore(Resource):
+#create path to issue assets
+class issue(Resource):
     def post(self):
         data = request.get_json()
         try:
             client.issue(client.listaddresses()[0]['address'], 
                 {'name':data['asset'],'open':True},0,1)
+            return {'data':'Asset issued!'}
         except:
-            pass
+            return {'data':'Asset already issued!'}
+
+#create path to add amount funds to address
+class issueMore(Resource):
+    def post(self):
+        data = request.get_json()
         client.issuemore(client.listaddresses()[0]['address'],
             data['asset'],data['amount'])
         return {'data':data['amount']}
@@ -82,6 +88,7 @@ api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(balance, '/api/v1/balance')
 api.add_resource(inventory, '/api/v1/inventory')
+api.add_resource(issue, '/api/v1/issue')
 api.add_resource(issueMore, '/api/v1/issueMore')
 api.add_resource(send, '/api/v1/send')
 api.add_resource(atomicExchange, '/api/v1/atomicExchange')

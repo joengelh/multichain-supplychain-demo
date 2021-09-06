@@ -20,7 +20,7 @@ def getBalance(usr):
 def home():
     return render_template("home.html", user=current_user, balance=getBalance(current_user))
 
-@views.route('/fund', methods=['GET', 'POST'])
+@views.route('/issue', methods=['GET', 'POST'])
 @login_required
 def fund():
     if request.method == 'POST':
