@@ -23,40 +23,38 @@ client = c = mcrpc.RpcClient(
 app = Flask(__name__)
 api = Api(app)
 
+#initiate virtualIotDevice
+iot = virtualIotDevice.iot()
+
 #create root path
 class helloWorld(Resource):
     def get(self):
         return {'data':'hi'}
 
-#create path to create stream, requires name
-class createStream(Resource):
+#create new iot device writing to stream,
+#creating stream if not already present
+class create(Resource):
     def post(self):
         data = request.get_json()
-        try:
-            client.create("stream",data["name"],False)
-            return {'data':"Stream created!"}
-        except:
-            return {'data':"Stream already exists!"}
+        iot.create(data["name"])
+        return {'data':data["name"]}
 
-#create path to publish to stream, requires name, key, data-json
-#postman example: {"name":"package001","key":"sensor","data-json":
-#{"json":{"temperatur":40,"humidity":400,"maxG":0.1,
-#"location":"N12314E123123"}}}
-class initiate(Resource):
+#destroy iot device thus not writing to stream furtherly
+class destroy(Resource):
     def post(self):
         data = request.get_json()
-        client.publish(data["name"],data["key"],data["data-json"])
-        return {'data':data["data-json"]}
+        iot.destroy(data["name"])
+        return {'data':data["name"]}
 
-class terminate(Resource):
-    def post(self):
-        data = request.get_json()
-        client.publish(data["name"],data["key"],data["data-json"])
-        return {'data':data["data-json"]}
+#list active iot devices writing to streams
+class listAll(Resource):
+    def get(self):
+        return {'data':iot.listAll()}
 
 api.add_resource(helloWorld, '/')
-api.add_resource(createStream, '/api/v1/createStream')
-api.add_resource(publish, '/api/v1/publish')
+api.add_resource(create, '/api/v1/create')
+api.add_resource(destroy, '/api/v1/destroy')
+api.add_resource(listAll, '/api/v1/listAll')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)
