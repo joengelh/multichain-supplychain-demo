@@ -6,6 +6,8 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 import ast
 
+import virtualIotDevice
+
 #connect to banks multichain node
 load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
@@ -40,7 +42,13 @@ class createStream(Resource):
 #postman example: {"name":"package001","key":"sensor","data-json":
 #{"json":{"temperatur":40,"humidity":400,"maxG":0.1,
 #"location":"N12314E123123"}}}
-class publish(Resource):
+class initiate(Resource):
+    def post(self):
+        data = request.get_json()
+        client.publish(data["name"],data["key"],data["data-json"])
+        return {'data':data["data-json"]}
+
+class terminate(Resource):
     def post(self):
         data = request.get_json()
         client.publish(data["name"],data["key"],data["data-json"])

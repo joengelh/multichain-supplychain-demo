@@ -1,6 +1,7 @@
 function clipboard() {
+  console.log("ye")
   /* Get the text field */
-  var copyText = document.getElementById("myInput");
+  var copyText = document.getElementById('myInput');
 
   /* Select the text field */
   copyText.select();
@@ -10,5 +11,5 @@ function clipboard() {
   navigator.clipboard.writeText(copyText.value);
 
   /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-} 
+  alert('Copied the text: ' + copyText.value);
+}
