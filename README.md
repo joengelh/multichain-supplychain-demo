@@ -6,7 +6,7 @@ The underlying blockchain can be installed, configured and all participants perm
 
 Thereafter copy the .env.sample file to .env and fill in your nodes addresses and private keys.
 
-:warning: **Dont share private keys in production**: seperate the .env files to each node according to ownership instead.
+:warning: **Dont share private keys in production**: seperate the .env files to each node according to ownership instead :warning:
 
 ## Participants
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
