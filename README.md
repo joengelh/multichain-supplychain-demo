@@ -1,5 +1,5 @@
 # multichain-supplychain-demo
-This project aims to offer a drastically simple blockchain demo of a trustless supply chain.
+This project aims to offer a drastically simple blockchain demo of a trustless supply chain, in which a customer buys an electronic device from an OEM after a service provider added value to it. Throughout the entire supply chain an IoT Device is monitoring environment parameters and a tail of the syslogs.
 
 ## Installation
 The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github](https://github.com/joengelh/multichain-ansible-automation)
