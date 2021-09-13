@@ -1,5 +1,14 @@
 # multichain-supplychain-demo
-demo of a supplychain on multichain using the blockchain deployment from [Github Repository}(https://github.com/joengelh/multichain-ansible-automation)
+This project aims to offer a drastically simple blockchain demo of a trustless supply chain.
+
+The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github Repository](https://github.com/joengelh/multichain-ansible-automation)
+
+A multitude of web-based apps give every one of the following stakeholders:
+
+name | description | port webinterface | port api
+-----|-------------|-------------------|---------
+serviceProvider | multichain administrator | 
+
 
 ## use case
 
