@@ -10,11 +10,11 @@ Since this project is still in the making, a ```-``` stands for an endpoint stil
 
 name | description | port webinterface | port api | status
 -----|-------------|-------------------|----------|-------
-serviceProvider | multichain administrator | - | - | &#x1F534
-customer | product purchasing party | - | - | not started
-iot | device attached to product, monitoring | no frontend required | 5005 | finished
-oem | initial producer of product | - | 5003 | started
-bank | issuer of stablecoin USD | 5002 | 5001 | finished
+serviceProvider | multichain administrator | - | - | :heart:
+customer | product purchasing party | - | - | :heart:
+iot | device attached to product, monitoring | no frontend required | 5005 | :green_heart:
+oem | initial producer of product | - | 5003 | :yellow_heart:
+bank | issuer of stablecoin USD | 5002 | 5001 | :green_heart:
 
 ## use case
 
