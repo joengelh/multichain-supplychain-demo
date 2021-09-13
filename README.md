@@ -2,14 +2,18 @@
 This project aims to offer a drastically simple blockchain demo of a trustless supply chain.
 
 ## Installation
-The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github Repository](https://github.com/joengelh/multichain-ansible-automation)
+The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github](https://github.com/joengelh/multichain-ansible-automation)
 
 ## Participants
-A multitude of web-based apps give every one of the following stakeholders:
+A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
+Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
 
 name | description | port webinterface | port api
 -----|-------------|-------------------|---------
-serviceProvider | multichain administrator | 
+serviceProvider | multichain administrator | - | 5003
+customer | product purchasing party | - | -
+iot | device attached to product, monitoring | no frontend required | 5005
+oem | initial producer of product | 5003 | 5003
 
 
 ## use case
