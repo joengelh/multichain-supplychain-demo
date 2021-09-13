@@ -11,7 +11,7 @@ Thereafter copy the .env.sample file to .env and fill in your nodes addresses an
 seperate the .env files to each node according to ownership if youre using the project for a productive environment!
 :::
 
-<div class="admonition danger highlight blink">
+<div class="admonition danger">
 <p class="admonition-title">Don't try this at home</p>
 <p>...</p>
 </div>
