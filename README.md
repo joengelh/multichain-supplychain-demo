@@ -11,6 +11,11 @@ Thereafter copy the .env.sample file to .env and fill in your nodes addresses an
 seperate the .env files to each node according to ownership if youre using the project for a productive environment!
 :::
 
+:::{admonition} Gefahr
+:class: hint
+hi
+:::
+
 ## Participants
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
 Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
