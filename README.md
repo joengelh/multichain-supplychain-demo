@@ -5,7 +5,12 @@ This project aims to offer a drastically simple blockchain demo of a trustless s
 The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github](https://github.com/joengelh/multichain-ansible-automation)
 
 Thereafter copy the .env.sample file to .env and fill in your nodes addresses and private keys.
-:warning: **do not use for production**: seperate the .env files to each node according to ownership if youre using the project for a productive environment!
+
+:::{admonition} Gefahr
+:class: danger
+seperate the .env files to each node according to ownership if youre using the project for a productive environment!
+:::
+
 ## Participants
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
 Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
