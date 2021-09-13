@@ -8,13 +8,13 @@ The underlying blockchain can be installed, configured and all participants perm
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
 Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
 
-name | description | port webinterface | port api
------|-------------|-------------------|---------
-serviceProvider | multichain administrator | - | 5003
-customer | product purchasing party | - | -
-iot | device attached to product, monitoring | no frontend required | 5005
-oem | initial producer of product | 5003 | 5003
-
+name | description | port webinterface | port api | status
+-----|-------------|-------------------|----------|-------
+serviceProvider | multichain administrator | - | - | &#x1F534
+customer | product purchasing party | - | - | not started
+iot | device attached to product, monitoring | no frontend required | 5005 | finished
+oem | initial producer of product | - | 5003 | started
+bank | issuer of stablecoin USD | 5002 | 5001 | finished
 
 ## use case
 
