@@ -1,6 +1,0 @@
-This favicon was generated using the following font:
-
-- Font Title: Londrina Sketch
-- Font Author: Copyright 2011 The Londrina Sketch Authors (https://github.com/marcelommp/Londrina-Typeface), with Reserved Font Name "Londrina Sketch"
-- Font Source: http://fonts.gstatic.com/s/londrinasketch/v11/c4m41npxGMTnomOHtRU68eIJn8qfWWn5Pos6CA.ttf
-- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

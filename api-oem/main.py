@@ -9,7 +9,7 @@ import ast
 #connect to banks multichain node
 load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
-bank = next((node for node in nodes if node['name'] == 'customer'), None)
+bank = next((node for node in nodes if node['name'] == 'oem'), None)
 client = c = mcrpc.RpcClient(
         bank['ip'], 
         bank['port'], 
