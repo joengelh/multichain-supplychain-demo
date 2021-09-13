@@ -8,6 +8,12 @@ Thereafter copy the .env.sample file to .env and fill in your nodes addresses an
 
 :warning: **Dont share private keys in production**: seperate the .env files to each node according to ownership instead :warning:
 
+In order to install the required python packages simply run:
+
+```bash
+pip3 install -r <endpoint directory>/requirements.txt
+```
+
 ## Participants
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
 Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
@@ -20,7 +26,7 @@ iot | device attached to product, monitoring | no frontend required | 5005 | :gr
 oem | initial producer of product | - | 5003 | :yellow_heart:
 bank | issuer of stablecoin USD | 5002 | 5001 | :green_heart:
 
-## use case
+## Use Case
 
 In this usecase, an OEM is selling goods (electronic devices) to a customer, using a stablecoin USD.
 The stablecoin is issued by a bank and can be refunded by sending the tokens to the networks burn address.
@@ -45,6 +51,22 @@ A multichain smart filter ensures the customer will only buy the product if its 
 9. iot writes to stream
 10. service provider offers atomic transaction, server against EUR
 11. customer reviews data, accepts
+
+## Run it!
+After the multichain has been deployed using for example this [Github Project](https://github.com/joengelh/multichain-ansible-automation) and the .env file has been filled with the nodes addresses and private keys, the webservers can be started.
+For that, from the projects root directory, simple call them using:
+
+```bash
+python3 api-bank/main.py
+```
+
+in case of an API endpoint or:
+
+```bash
+python3 frontend-bank/main.py
+```
+
+in case of a web ui.
 
 ## Powerpoint
 
