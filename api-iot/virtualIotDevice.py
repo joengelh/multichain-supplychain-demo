@@ -69,9 +69,13 @@ class iot:
                 client.create("stream",data["name"],False)
             except:
                 pass
+    
+    def activate(self,name):
+        if name not in self.sensorsList:
+            self.create(name)
             self.sensorsList.append(name)
 
-    def destroy(self, name):
+    def deactivate(self, name):
         self.sensorsList.remove(name)
 
     def listAll(self):

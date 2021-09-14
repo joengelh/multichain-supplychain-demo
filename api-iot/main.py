@@ -26,24 +26,24 @@ api = Api(app)
 #initiate virtualIotDevice
 iot = virtualIotDevice.iot()
 
-#create root path
+#activate root path
 class helloWorld(Resource):
     def get(self):
         return {'data':'hi'}
 
-#create new iot device writing to stream,
+#activate new iot device writing to stream,
 #creating stream if not already present
-class create(Resource):
+class activate(Resource):
     def post(self):
         data = request.get_json()
-        iot.create(data["name"])
+        iot.activate(data["name"])
         return {'data':data["name"]}
 
-#destroy iot device thus not writing to stream furtherly
-class destroy(Resource):
+#deactivate iot device thus not writing to stream furtherly
+class deactivate(Resource):
     def post(self):
         data = request.get_json()
-        iot.destroy(data["name"])
+        iot.deactivate(data["name"])
         return {'data':data["name"]}
 
 #list active iot devices writing to streams
@@ -52,8 +52,8 @@ class listAll(Resource):
         return {'data':iot.listAll()}
 
 api.add_resource(helloWorld, '/')
-api.add_resource(create, '/api/v1/create')
-api.add_resource(destroy, '/api/v1/destroy')
+api.add_resource(activate, '/api/v1/activate')
+api.add_resource(deactivate, '/api/v1/deactivate')
 api.add_resource(listAll, '/api/v1/listAll')
 
 if __name__ == '__main__':
