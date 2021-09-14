@@ -27,6 +27,6 @@ path | description
 /sign-up | sign up using wallet address
 /logout | log out
 /fund | mint new USD stablecoins to own address
-/refund | if user not bank, show burn address <br/>
+/refund | if user not bank, show burn address <br>
  | if user is bank, give opportunity to burn directly
 
