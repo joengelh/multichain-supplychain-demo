@@ -44,14 +44,3 @@ def refund():
     else:
         burnAddress = requests.get('http://localhost:5001/api/v1/burnAddress').json()
         return render_template("burn.html", user=current_user, address=burnAddress['data'])
-
-@views.route('/delete-note', methods=['POST'])
-def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
-            db.session.commit()
-    return jsonify({})
