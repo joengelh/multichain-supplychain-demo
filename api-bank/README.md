@@ -8,5 +8,3 @@
 * [balance](docs/address/balance.md) : `POST /api/v1/balance`
 * [fund](docs/address/fund.md) : `POST /api/v1/fund`
 * [refund](docs/address/refund.md) : `POST /api/v1/refund`
-
-## Endpoints that require Authentication
