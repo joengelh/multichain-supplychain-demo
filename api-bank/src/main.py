@@ -38,6 +38,7 @@ class balance(Resource):
         client.importaddress(data['account'])
         balances = client.getaddressbalances(data['account'])
         balanceEur = next((item for item in balances if item['name'] == 'EUR'), None)
+        balanceEur["qty"] = float(balanceEur["qty"])
         return {'data':balanceEur}
 
 #create path to get bank address
@@ -56,14 +57,18 @@ class burnAddress(Resource):
 class fund(Resource):
     def post(self):
         data = request.get_json()
+        if data['amount'] <= 0:
+            return {"ERROR":"value must be greater zero"}
         client.issuemore(data['account'],'EUR',data['amount'])
         client.importaddress(data['account'])
-        return {'data':client.getaddressbalances(data['account'])}
+        return {'data':data['amount']}
 
 #create path to refund
 class refund(Resource):
     def post(self):
         data = request.get_json()
+        if data['amount'] <= 0:
+            return {"ERROR":"value must be greater zero"}
         pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         client.importaddress(burnAddress)

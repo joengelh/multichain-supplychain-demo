@@ -12,7 +12,8 @@ def getBalance(usr):
     if balance["data"] is None:
         return 0
     else:
-        return balance["data"]["qty"]
+        print(type(balance))
+        return float(balance["data"]["qty"])
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required

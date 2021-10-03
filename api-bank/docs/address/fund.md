@@ -1,10 +1,10 @@
-# Return users balance
+# Fund
 
-Get users Balance from multichain
+Funds users account with USD
 
-**URL** : `/api/v1/balance`
+**URL** : `/api/v1/fund/`
 
-**Method** : `GET`
+**Method** : `POST`
 
 **Auth required** : NO
 
@@ -12,11 +12,13 @@ Get users Balance from multichain
 
 **Data constraints**
 
-Provide multichain address.
+Provide multichain address and 
+amount to be funded.
 
 ```json
 {
-    "account": "[multichain address]"
+    "account": "[multichain address]",
+    "amount": "[integer
 }
 ```
 
