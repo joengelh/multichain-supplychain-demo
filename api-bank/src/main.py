@@ -33,7 +33,7 @@ class helloWorld(Resource):
 
 #create path to check balance
 class balance(Resource):
-    def post(self):
+    def get(self):
         data = request.get_json()
         client.importaddress(data['account'])
         balances = client.getaddressbalances(data['account'])
@@ -45,7 +45,7 @@ class ownAddress(Resource):
     def get(self):
         return {'data':client.listaddresses()[0]['address']}
 
-#create path to get nrun address
+#create path to get burn address
 class burnAddress(Resource):
     def get(self):
         pattern = re.compile("(?<=burnaddress': ')[0-9][A-Za-z0-9]+")

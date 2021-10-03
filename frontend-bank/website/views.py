@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
 from . import db
 import json
 import requests
@@ -8,7 +7,7 @@ import requests
 views = Blueprint('views', __name__)
 
 def getBalance(usr):
-    balance = requests.post('http://localhost:5001/api/v1/balance', 
+    balance = requests.get('http://localhost:5001/api/v1/balance', 
         json={'account': usr.wallet}).json()
     if balance["data"] is None:
         return 0

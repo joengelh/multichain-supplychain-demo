@@ -1,5 +1,10 @@
 # Bank API Documentation
 
+## Directions
+
+In a real world scenario this API would be served by the node labeled **bank**.
+For simplicities sake in the demo all APIs are being served by one central host using port 5001.
+
 ## Open Endpoints
 
 * [root](docs/root.md) : `GET /`
