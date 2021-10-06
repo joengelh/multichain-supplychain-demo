@@ -17,8 +17,8 @@ client = c = mcrpc.RpcClient(
         bank['password']
     )
 try:
-    #create EUR asset class with 100 mil € balance, issuable and devidable by 0.01 
-    client.issue(client.listaddresses()[0]['address'], {'name':'EUR','open':True},100000000,0.01)
+    #create USD asset class with 100 mil € balance, issuable and devidable by 0.01 
+    client.issue(client.listaddresses()[0]['address'], {'name':'USD','open':True},100000000,0.01)
 except:
     pass
 
@@ -37,14 +37,9 @@ class balance(Resource):
         data = request.get_json()
         client.importaddress(data['account'])
         balances = client.getaddressbalances(data['account'])
-        balanceEur = next((item for item in balances if item['name'] == 'EUR'), None)
+        balanceEur = next((item for item in balances if item['name'] == 'USD'), None)
         balanceEur["qty"] = float(balanceEur["qty"])
         return {'data':balanceEur}
-
-#create path to get bank address
-class ownAddress(Resource):
-    def get(self):
-        return {'data':client.listaddresses()[0]['address']}
 
 #create path to get burn address
 class burnAddress(Resource):
@@ -59,7 +54,7 @@ class fund(Resource):
         data = request.get_json()
         if data['amount'] <= 0:
             return {"ERROR":"value must be greater zero"}
-        client.issuemore(data['account'],'EUR',data['amount'])
+        client.issuemore(data['account'],'USD',data['amount'])
         client.importaddress(data['account'])
         return {'data':data['amount']}
 
@@ -73,13 +68,12 @@ class refund(Resource):
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         client.importaddress(burnAddress)
         try:
-            client.sendasset(burnAddress,'EUR',data['amount'])
+            client.sendasset(burnAddress,'USD',data['amount'])
             return {'data':data['amount']}
         except:
             return {'data':'ERROR, not enough funds'}
 
 api.add_resource(helloWorld, '/')
-api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(burnAddress, '/api/v1/burnAddress')
 api.add_resource(balance, '/api/v1/balance')
 api.add_resource(fund, '/api/v1/fund')

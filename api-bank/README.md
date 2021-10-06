@@ -8,7 +8,6 @@ For simplicities sake in the demo all APIs are being served by one central host 
 ## Open Endpoints
 
 * [root](docs/root.md) : `GET /`
-* [ownAddress](docs/address/ownAddress.md) : `GET /api/v1/ownAddress`
 * [burnAddress](docs/address/burnAddress.md) : `GET /api/v1/burnAddress`
 * [balance](docs/address/balance.md) : `POST /api/v1/balance`
 * [fund](docs/address/fund.md) : `POST /api/v1/fund`

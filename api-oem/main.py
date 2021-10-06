@@ -75,7 +75,7 @@ class atomicExchange(Resource):
         data = request.get_json()
         lock = client.preparelockunspent({data["asset"]:1})
         rawExchange = client.createrawexchange(lock["txid"],
-            lock["vout"],{"EUR":data["price"]})
+            lock["vout"],{"USD":data["price"]})
         return {'data':rawExchange}
 
 api.add_resource(helloWorld, '/')

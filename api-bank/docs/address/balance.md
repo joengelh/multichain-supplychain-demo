@@ -1,6 +1,6 @@
 # Return users balance
 
-Get users Balance from multichain
+Returns USD balance of specified multichain address.
 
 **URL** : `/api/v1/balance`
 
@@ -39,7 +39,7 @@ Provide multichain address.
 ```json
 {
     "data": {
-        "name": "EUR",
+        "name": "USD",
         "assetref": "40-265-39368",
         "qty": 100101
     }

@@ -45,11 +45,11 @@ A multichain smart filter ensures the customer will only buy the product if its 
 3. serviceProvider communicates oem the besiness needs :thumbsup:
 4. oem issues asset & stream :thumbsup:
 5. iot writes to stream :thumbsup:
-6. oem offers atomic transaction server against EUR :thumbsup:
+6. oem offers atomic transaction server against USD :thumbsup:
 7. service provider reviews data, accepts
 8. service provider writes to steam
 9. iot writes to stream
-10. service provider offers atomic transaction, server against EUR
+10. service provider offers atomic transaction, server against USD
 11. customer reviews data, accepts
 
 ## Run it!

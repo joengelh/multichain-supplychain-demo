@@ -1,9 +1,9 @@
-# Fund
+# Refund
 
-Funds users account with USD by issuing the asset
-directly to the specified account.
+Refunds USD by sending specified amount of USD
+from the banks wallet to the blockchains burn address.
 
-**URL** : `/api/v1/fund/`
+**URL** : `/api/v1/refund/`
 
 **Method** : `POST`
 
@@ -13,12 +13,10 @@ directly to the specified account.
 
 **Data constraints**
 
-Provide multichain address and 
-amount to be funded.
+Provide amount to be burned from the banks wallet
 
 ```json
 {
-    "account": "[multichain address]",
     "amount": "[posititve float]"
 }
 ```
@@ -27,14 +25,13 @@ amount to be funded.
 
 ```json
 {
-    "account":"1ExJS65CFCniLT7r8h1pXByr9L3q3YsgMhMA3D",
     "amount":1.2
 }
 ```
 
 ## Success Response
 
-**Condition** : If everything is OK and the account exists.
+**Condition** : If everything is OK and the bank has the required amount of USD.
 
 **Code** : `200 OK`
 
