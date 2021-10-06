@@ -40,6 +40,7 @@ def fund():
 @views.route('/refund', methods=['GET', 'POST'])
 @login_required
 def refund():
+    ownAddress = requests.get('http://localhost:5001/api/v1/ownAddress').json()
     if ownAddress["data"] == current_user.wallet:    
         if request.method == 'POST':
             amount = request.form['amount']

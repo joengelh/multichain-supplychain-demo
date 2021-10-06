@@ -1,4 +1,4 @@
-# Return users balance
+# Balance
 
 Returns USD balance of specified multichain address.
 
