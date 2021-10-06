@@ -43,9 +43,14 @@ class balance(Resource):
         data = request.get_json()
         client.importaddress(data['account'])
         balances = client.getaddressbalances(data['account'])
-        balanceEur = next((item for item in balances if item['name'] == 'USD'), None)
-        balanceEur["qty"] = float(balanceEur["qty"])
-        return {'data':balanceEur}
+        #see if USD is available, if not return 0
+        try:
+            balanceUsd = next((item for item in balances if item['name'] == 'USD'), None)
+            balanceUsd["qty"] = float(balanceUsd["qty"])
+        except:
+            balanceUsd = {}
+            balanceUsd["qty"] = 0
+        return {'data':balanceUsd}
 
 #create path to get burn address
 class burnAddress(Resource):

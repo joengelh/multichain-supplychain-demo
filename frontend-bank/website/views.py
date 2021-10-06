@@ -6,11 +6,6 @@ import requests
 
 views = Blueprint('views', __name__)
 
-#read dotenv to know the banks address
-load_dotenv()
-nodes = ast.literal_eval(os.getenv('NODES'))
-bank = next((node for node in nodes if node['name'] == 'bank'), None)
-
 def getBalance(usr):
     balance = requests.get('http://localhost:5001/api/v1/balance', 
         json={'account': usr.wallet}).json()
