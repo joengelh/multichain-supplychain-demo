@@ -6,7 +6,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 import ast
 
-#connect to banks multichain node
+#connect to banks multichain node using .env file in projects root dir
 load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
 bank = next((node for node in nodes if node['name'] == 'bank'), None)
@@ -17,7 +17,8 @@ client = c = mcrpc.RpcClient(
         bank['password']
     )
 try:
-    #create USD asset class with 100 mil € balance, issuable and devidable by 0.01 
+    #create USD asset class with 100 mil € balance, issuable and devidable by 0.01
+    #in order to simulate USD stablecoin
     client.issue(client.listaddresses()[0]['address'], {'name':'USD','open':True},100000000,0.01)
 except:
     pass
@@ -26,7 +27,7 @@ except:
 app = Flask(__name__)
 api = Api(app)
 
-#create root path
+#create root path for testing
 class helloWorld(Resource):
     def get(self):
         return {'data':'hi'}
@@ -53,7 +54,7 @@ class burnAddress(Resource):
         burnAddress = pattern.findall(str(client.getinfo()))[0]
         return {'data':burnAddress}
 
-#create path to add amount funds to address
+#create path to issue specified amount funds to address
 class fund(Resource):
     def post(self):
         data = request.get_json()
@@ -63,7 +64,7 @@ class fund(Resource):
         client.importaddress(data['account'])
         return {'data':data['amount']}
 
-#create path to refund
+#create path to burn
 class refund(Resource):
     def post(self):
         data = request.get_json()
