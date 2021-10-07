@@ -5,11 +5,17 @@ import re
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 import ast
+import sys
+
+#get port and name from arguments
+print("Give name of client as first, port as second argument like python3 api-shareHolder/main.py oem 5003")
+NAME = sys.argv[1]
+PORT = sys.argv[2]
 
 #connect to banks multichain node
 load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
-bank = next((node for node in nodes if node['name'] == 'oem'), None)
+bank = next((node for node in nodes if node['name'] == NAME), None)
 client = c = mcrpc.RpcClient(
         bank['ip'], 
         bank['port'], 
@@ -78,6 +84,15 @@ class atomicExchange(Resource):
             lock["vout"],{"USD":data["price"]})
         return {'data':rawExchange}
 
+#create path to create exchange requireing asset and price
+class reviewExchange(Resource):
+    def post(self):
+        data = request.get_json()
+        lock = client.preparelockunspent({data["asset"]:data["amount"]})
+        rawExchange = client.createrawexchange(lock["txid"],
+            lock["vout"],{"USD":data["price"]})
+        return {'data':rawExchange}
+
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(balance, '/api/v1/balance')
@@ -85,9 +100,12 @@ api.add_resource(inventory, '/api/v1/inventory')
 api.add_resource(issueMore, '/api/v1/issueMore')
 api.add_resource(send, '/api/v1/send')
 api.add_resource(atomicExchange, '/api/v1/atomicExchange')
+api.add_resource(reviewExchange, '/api/v1/reviewExchange')
+#api.add_resource(acceptExchange, '/api/v1/acceptExchange')
+#api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5003)
+    app.run(host='0.0.0.0', port=PORT)
 
 
 
