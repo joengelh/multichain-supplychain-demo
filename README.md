@@ -20,7 +20,7 @@ Since this project is still in the making, a ```-``` stands for an endpoint stil
 
 name | description | port webinterface | port api | status
 -----|-------------|-------------------|----------|-------
-serviceProvider | participant adding value to product | - | 5009 | :heart:
+serviceProvider | participant adding value to product | - | 5009 | :yellow_heart:
 customer | product purchasing party | - | 5007 | :yellow_heart:
 iot | device attached to product, monitoring | no frontend required | 5005 | :green_heart:
 oem | initial producer of product | - | 5003 | :yellow_heart:
