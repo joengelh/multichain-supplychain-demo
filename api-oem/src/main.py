@@ -73,7 +73,7 @@ class send(Resource):
 class atomicExchange(Resource):
     def post(self):
         data = request.get_json()
-        lock = client.preparelockunspent({data["asset"]:1})
+        lock = client.preparelockunspent({data["asset"]:data["amount"]})
         rawExchange = client.createrawexchange(lock["txid"],
             lock["vout"],{"USD":data["price"]})
         return {'data':rawExchange}
