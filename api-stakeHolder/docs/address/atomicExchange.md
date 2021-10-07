@@ -3,6 +3,8 @@
 Proposes to exchange a specified asset of a specified quantity for a specified price of a specified barter,
 returns address of the exchange.
 
+:warning: **Only two classes of assets at once**: in this demo, only one asset can be exchanged for another at once :warning:
+
 **URL** : `/api/v1/atomicExchange/`
 
 **Method** : `POST`
