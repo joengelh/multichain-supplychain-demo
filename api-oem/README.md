@@ -22,7 +22,7 @@ For simplicities sake in the demo all APIs are being served by one central host 
 
 * [root](docs/root.md) : `GET /`
 * [ownAddress](docs/address/ownAddress.md) : `GET /api/v1/ownAddress`
-* [balance](docs/address/balance.md) : `POST /api/v1/balance`
+* [balance](docs/address/balance.md) : `GET /api/v1/balance`
 * [inventory](docs/address/inventory.md) : `GET /api/v1/inventory`
 * [issueMore](docs/address/issueMore.md) : `POST /api/v1/issueMore`
 * [send](docs/address/send.md) : `POST /api/v1/send`
