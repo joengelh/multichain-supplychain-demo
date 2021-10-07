@@ -79,19 +79,35 @@ class send(Resource):
 class atomicExchange(Resource):
     def post(self):
         data = request.get_json()
-        lock = client.preparelockunspent({data["asset"]:data["amount"]})
+        lock = client.preparelockunspent({data["asset"]:data["amount"]},False)
         rawExchange = client.createrawexchange(lock["txid"],
-            lock["vout"],{"USD":data["price"]})
+            lock["vout"],{data["barter"]:data["price"]})
         return {'data':rawExchange}
 
-#create path to create exchange requireing asset and price
+#create path to decode exchange
 class reviewExchange(Resource):
+    def get(self):
+        data = request.get_json()
+        proposal = client.decoderawexchange(data["proposal"])
+        return {'data':proposal}
+
+#create path to accept exchange
+class acceptExchange(Resource):
     def post(self):
         data = request.get_json()
-        lock = client.preparelockunspent({data["asset"]:data["amount"]})
-        rawExchange = client.createrawexchange(lock["txid"],
-            lock["vout"],{"USD":data["price"]})
-        return {'data':rawExchange}
+        proposal = client.decoderawexchange(data["proposal"])
+        lock = client.preparelockunspent(
+            {proposal["ask"]["assets"][0]["name"]:proposal["ask"]["assets"][0]["qty"]},False)
+        result = client.completerawexchange(data["proposal"],lock["txid"],0,
+            {proposal["offer"]["assets"][0]["name"]:proposal["offer"]["assets"][0]["qty"]})
+        return {'data':result}
+
+#create path to withdraw from exchange
+class withdrawExchange(Resource):
+    def post(self):
+        data = request.get_json()
+        result = client.disablerawtransaction(data["proposal"])
+        return {'data':result}
 
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
@@ -101,12 +117,9 @@ api.add_resource(issueMore, '/api/v1/issueMore')
 api.add_resource(send, '/api/v1/send')
 api.add_resource(atomicExchange, '/api/v1/atomicExchange')
 api.add_resource(reviewExchange, '/api/v1/reviewExchange')
-#api.add_resource(acceptExchange, '/api/v1/acceptExchange')
-#api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
+api.add_resource(acceptExchange, '/api/v1/acceptExchange')
+api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT)
-
-
-
 

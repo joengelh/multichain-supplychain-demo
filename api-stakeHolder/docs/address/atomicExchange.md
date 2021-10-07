@@ -1,6 +1,6 @@
 # Atomic Exchange
 
-Proposes to exchange a specified asset of a specified quantity for a specified price,
+Proposes to exchange a specified asset of a specified quantity for a specified price of a specified barter,
 returns address of the exchange.
 
 **URL** : `/api/v1/atomicExchange/`
@@ -19,6 +19,7 @@ Provide address, amount and asset.
 {
     "name": "[string]",
     "amount": [integer],
+    "barter":[string],
     "price": [positive float]
 }
 ```
@@ -29,6 +30,7 @@ Provide address, amount and asset.
 {
     "name":"dellServer",
     "amount":2,
+    "barter":"USD",
     "price": 400000
 }
 ```
