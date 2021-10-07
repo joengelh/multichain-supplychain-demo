@@ -1,6 +1,6 @@
-# Own Address
+# Burn Address
 
-Returns first address of the banks multichain node
+Returns the blockchains burn address
 
 **URL** : `/api/v1/burnAddress
 

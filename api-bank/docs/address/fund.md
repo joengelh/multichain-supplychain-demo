@@ -19,7 +19,7 @@ amount to be funded.
 ```json
 {
     "account": "[multichain address]",
-    "amount": "[posititve float]"
+    "amount": [posititve float]
 }
 ```
 

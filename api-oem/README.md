@@ -1,27 +1,29 @@
-# Bank API Documentation
+# OEM API Documentation
 
 ## Concept
 
-A banking service on the blockchain is fundamentally diffrent from traditional banking services, since the bank does not require to have administrative access to the account/wallet of the customer. Hence, the relationship can be designed in a trustless manner.
+A manufacturer of goods faces the challenge of quality and safety assurance. In a traditional business model, the manufacturer looses control over the product once it is shipped to a reseller. In a blockchain based business model, the manufacturer can give the device a unique ID and have IoT Sensors write data about the product to the blockchain for customers to retrace the products history. Counterfeit and manipulated products can thus be identified more easily.
 
 ## Functionality
 
-This API Serves to the **frontend-bank** all the functionalities expected of a bank service.
-Firstly, the customer can create an account using wallet address, name, email and password.
-Thereafter he can convert USD to USD Token by funding USD to theire own wallet.
-This transaction can be monitored and billed accordingly by the bank.
-Aswell the customer can view the blockchains burn address and use it in his own interface to burn USD. This transaction can be monitored and billed accordingly aswell.
+This API Serves to the **frontend-OEM** the following functionalities:
+* retrieving the own address
+* querying the blockchain for the current issued inventory
+* issue new assets
+* sending assets to the business partners
+* proposing a business deal as an atomic exchange
 
 ## Directions
 
-In a real world scenario this API would be served by the node labeled **bank**.
-For simplicities sake in the demo all APIs are being served by one central host using port 5001.
+In a real world scenario this API would be served by the node labeled **OEM**.
+For simplicities sake in the demo all APIs are being served by one central host using port 5003.
 
 ## Open Endpoints
 
 * [root](docs/root.md) : `GET /`
 * [ownAddress](docs/address/ownAddress.md) : `GET /api/v1/ownAddress`
 * [balance](docs/address/balance.md) : `POST /api/v1/balance`
-* [burnAddress](docs/address/burnAddress.md) : `GET /api/v1/burnAddress`
-* [fund](docs/address/fund.md) : `POST /api/v1/fund`
-* [refund](docs/address/refund.md) : `POST /api/v1/refund`
+* [inventory](docs/address/inventory.md) : `GET /api/v1/inventory`
+* [issueMore](docs/address/issueMore.md) : `POST /api/v1/issueMore`
+* [send](docs/address/send.md) : `POST /api/v1/send`
+* [atomicExchange](docs/address/atomicExchange.md) : `POST /api/v1/atomicExchange`
