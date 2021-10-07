@@ -11,7 +11,7 @@ Thereafter copy the .env.sample file to .env and fill in your nodes addresses an
 In order to install the required python packages simply run:
 
 ```bash
-pip3 install -r <endpoint directory>/requirements.txt
+pip3 install -r <endpoint directory>/src/requirements.txt
 ```
 
 ## Participants
