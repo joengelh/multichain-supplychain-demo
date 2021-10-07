@@ -27,7 +27,7 @@ Provide address, amount and asset.
 ```json
 {
     "name":"dellServer",
-    "amount":2
+    "amount":2,
     "address":"1ExJS65CFCniLT7r8h1pXByr9L3q3YsgMhMA3D"
 }
 ```

@@ -18,7 +18,7 @@ Provide amount to be burned from the banks wallet
 
 ```json
 {
-    "name": "[string]"
+    "name": "[string]",
     "amount": [posititve float]
 }
 ```
