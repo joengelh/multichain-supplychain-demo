@@ -34,7 +34,7 @@ The stablecoin is issued by a bank and can be refunded by sending the tokens to 
 In order to represent the goods on the supplychain, the OEM mints products by issuing a new asset class and selling the asset to the service provider in exchange for USD.
 
 Afterwards the service provider re-sells the product to the customer for the original price plus a markup using multichains atomic exchanges.
-Fron the minting of the asset until the customers reception of the product, the IoT member writes data contiuously to the blockchain regarding location, temperature, humidity, shock (G-force) and the tail of the syslogs.
+From the minting of the asset until the customers reception of the product, the IoT member writes data contiuously to the blockchain regarding location, temperature, humidity, shock (G-force) and the tail of the syslogs.
 
 A multichain smart filter ensures the customer will only buy the product if its has been monitored continously by the IoT device and the data does not present damaging circumstances for the product or malware deployment in the syslogs.
 
