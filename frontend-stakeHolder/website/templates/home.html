@@ -1,11 +1,14 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
-<h1 align="center">Bank Home</h1>
+<h1 align="center">Welcome!</h1>
   <li class="list-group-item">
     First Name: {{ user.first_name }}
   </li>
   <li class="list-group-item">
     Email Address: {{ user.email }}
+  </li>
+  <li class="list-group-item">
+    Host Address: {{ user.host }}
   </li>
   <li class="list-group-item">
     Wallet Address: {{ user.wallet }}
