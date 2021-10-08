@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from . import db
 import json
 import requests
+
 views = Blueprint('views', __name__)
 
 def getBalance(usr):
@@ -27,25 +28,19 @@ def home():
             ownAddress=getWallet(current_user), 
             balance=getBalance(current_user))
 
-    #    amount = request.form['amount']
-    #    name = request.form['name']
-    #    address = request.form['address']
-    #    api = 'http://' + usr.host + '/api/v1/send'
-    #    result = request.post(api,
-    #            json={'name':asset,'amount':amount,'address':address})
-
 @views.route('/send', methods=['GET', 'POST'])
 @login_required
 def send():
-    api = 'http://' + current_user.host + '/api/v1/inventory'
-    inventory = requests.get(api, json={}).json()
     if request.method == 'POST':
         amount = request.form['amount']
         name = request.form['name']
         address = request.form['address']
         sendApi = 'http://' + current_user.host + '/api/v1/send'
-        print(request.post(sendApi,json={'name':name,'amount':float(amount),'address':address}))
+        result = requests.post(sendApi, json={"name":name,"amount":float(amount),"address":address}).json()
+        print(result)
         flash('Sending Successful!', category='success')
+    api = 'http://' + current_user.host + '/api/v1/inventory'
+    inventory = requests.get(api, json={}).json()
     return render_template("send.html", 
             user=current_user, 
             balance=getBalance(current_user),
