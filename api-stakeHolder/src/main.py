@@ -46,8 +46,8 @@ class balance(Resource):
 #create path to check balance
 class inventory(Resource):
     def get(self):
-        balances = client.getaddressbalances(client.listaddresses()[0]['address'])
-        return {'data':balances}
+        result = client.getaddressbalances(client.listaddresses()[0]['address'])
+        return {'data':result}
 
 #create path to get address
 class ownAddress(Resource):
@@ -63,32 +63,32 @@ class issueMore(Resource):
                 {'name':data['asset'],'open':True},0,1)
         except:
             pass
-        client.issuemore(client.listaddresses()[0]['address'],
+        result = client.issuemore(client.listaddresses()[0]['address'],
             data['asset'],data['amount'])
-        return {'data':data['amount']}
+        return {'data':result}
 
 #create path to send
 class send(Resource):
     def post(self):
         data = request.get_json()
-        client.sendasset(data['address'],data['name'],data['amount'])
-        return {'data':data['amount']}
+        result = client.sendasset(data['address'],data['name'],data['amount'])
+        return {'data':result}
 
 #create path to create exchange requireing asset and price
 class atomicExchange(Resource):
     def post(self):
         data = request.get_json()
         lock = client.preparelockunspent({data["asset"]:data["amount"]},False)
-        rawExchange = client.createrawexchange(lock["txid"],
+        result = client.createrawexchange(lock["txid"],
             lock["vout"],{data["barter"]:data["price"]})
-        return {'data':rawExchange}
+        return {'data':result}
 
 #create path to decode exchange
 class reviewExchange(Resource):
     def get(self):
         data = request.get_json()
-        proposal = client.decoderawexchange(data["proposal"])
-        return {'data':proposal}
+        result = client.decoderawexchange(data["proposal"])
+        return {'data':result}
 
 #create path to accept exchange
 class acceptExchange(Resource):

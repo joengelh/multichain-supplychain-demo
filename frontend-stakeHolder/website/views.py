@@ -44,8 +44,7 @@ def send():
         name = request.form['name']
         address = request.form['address']
         sendApi = 'http://' + current_user.host + '/api/v1/send'
-        result = request.post(sendApi,
-            json={'name':name,'amount':float(amount),'address':address}).json()
+        print(request.post(sendApi,json={'name':name,'amount':float(amount),'address':address}))
         flash('Sending Successful!', category='success')
     return render_template("send.html", 
             user=current_user, 
