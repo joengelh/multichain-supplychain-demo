@@ -27,6 +27,7 @@ This API Serves to the **frontend-oem**, **frontend-customer**, **frontend-servi
 * reviewing proposed business deals
 * accepting business deals as atomic exchanges
 * withdrawing a business deal proposal
+* list all business proposals
 
 ## Directions
 
@@ -45,3 +46,4 @@ For simplicities sake in the demo all APIs are being served by one central host 
 * [reviewExchange](docs/address/reviewExchange.md) : `POST /api/v1/reviewExchange`
 * [acceptExchange](docs/address/acceptExchange.md) : `POST /api/v1/acceptExchange`
 * [withdrawExchange](docs/address/withdrawExchange.md) : `POST /api/v1/withdrawExchange`
+* [listTransactions](docs/address/listTransactions.md) : `GET /api/v1/listTransactions

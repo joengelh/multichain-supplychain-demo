@@ -109,6 +109,12 @@ class withdrawExchange(Resource):
         result = client.disablerawtransaction(data["proposal"])
         return {'data':result}
 
+#create path to list wallets transactions
+class listTransactions(Resource):
+    def get(self):
+        result = client.listwallettransactions()
+        return {'data':result}
+
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(balance, '/api/v1/balance')
@@ -119,6 +125,7 @@ api.add_resource(atomicExchange, '/api/v1/atomicExchange')
 api.add_resource(reviewExchange, '/api/v1/reviewExchange')
 api.add_resource(acceptExchange, '/api/v1/acceptExchange')
 api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
+api.add_resource(listTransactions, '/api/v1/listTransactions')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT)
