@@ -65,29 +65,10 @@ def issue():
             balance=getBalance(current_user),
             inventory=inventory["data"])
 
-@views.route('/fund', methods=['GET', 'POST'])
+@views.route('/history', methods=['GET'])
 @login_required
-def fund():
-    if request.method == 'POST':
-        amount = request.form['amount']
-        requests.post('http://localhost:5001/api/v1/fund', 
-            json={'account': getWallet(current_user), 'amount': float(amount)})
-        flash('Funding Successful!', category='success')
-    return render_template("fund.html", user=current_user, balance=getBalance(current_user))
-
-# if the current logged in user is the bank, display the burn asset page
-# else burn address on page
-@views.route('/refund', methods=['GET', 'POST'])
-@login_required
-def refund():
-    ownAddress = requests.get('http://localhost:5001/api/v1/ownAddress').json()
-    if ownAddress["data"] == getWallet(current_user):    
-        if request.method == 'POST':
-            amount = request.form['amount']
-            requests.post('http://localhost:5001/api/v1/refund', 
-                json={'amount': float(amount)})
-            flash('Refunding Successful!', category='success')
-        return render_template("refund.html", user=current_user, balance=getBalance(current_user))
-    else:
-        burnAddress = requests.get('http://localhost:5001/api/v1/burnAddress').json()
-        return render_template("burn.html", user=current_user, address=burnAddress['data'])
+def history():
+    api = 'http://' + current_user.host + '/api/v1/history'
+    result = requests.get(api, json={}).json()
+    return render_template("history.html", 
+        transactions=result["data"])

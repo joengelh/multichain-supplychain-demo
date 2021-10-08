@@ -57,21 +57,28 @@
         <div class="navbar-nav">
           {% if user.is_authenticated %}
           <a class="nav-item nav-link" id="home" href="/">Home</a>
-          <a class="nav-item nav-link" id="send" href="/send">Send</a>
-          <a class="nav-item nav-link" id="issue" href="/issue">Issue</a>
           
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Assets
+          </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="send" href="/send">Send Assets</a>
+              <a class="dropdown-item" id="issue" href="/issue">Issue Assets</a>    
+            </div>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Atomic Exchange
           </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	      <a class="dropdown-item" id="newExchange" href="/newExchange">New Exchange</a>
-              <a class="dropdown-item" id="closeExchange" href="/closeExchange">Close Exchange</a>
-              <a class="dropdown-item" id="openExchanges" href="/openExchanges">Open Exchanges</a>
-              <a class="dropdown-item" id="exchangeHistory" href="/exchangeHistory">Exchange History</a>
+	            <a class="dropdown-item" id="newExchange" href="/newExchange">New Exchange</a>
+              <a class="dropdown-item" id="existingExchanges" href="/existingExchanges">Existing Exchanges</a>
             </div>
           </li>
 
+          <a class="nav-item nav-link" id="history" href="/history">History</a>
           <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
           {% else %}
           <a class="nav-item nav-link" id="login" href="/login">Login</a>
