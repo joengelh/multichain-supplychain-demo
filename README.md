@@ -16,14 +16,13 @@ pip3 install -r <endpoint directory>/src/requirements.txt
 
 ## Participants
 A multitude of web-based apps give every one of the following stakeholders direct access to the blockchain.
-Since this project is still in the making, a ```-``` stands for an endpoint still to be developed.
 
 name | description | port webinterface | port api | status
 -----|-------------|-------------------|----------|-------
-serviceProvider | participant adding value to product | - | 5009 | :yellow_heart:
-customer | product purchasing party | - | 5007 | :yellow_heart:
+serviceProvider | participant adding value to product | 5008 | 5009 | :yellow_heart:
+customer | product purchasing party | 5006 | 5007 | :yellow_heart:
 iot | device attached to product, monitoring | no frontend required | 5005 | :green_heart:
-oem | initial producer of product | - | 5003 | :yellow_heart:
+oem | initial producer of product | 5004 | 5003 | :yellow_heart:
 bank | issuer of stablecoin USD | 5002 | 5001 | :green_heart:
 
 ## Use Case
