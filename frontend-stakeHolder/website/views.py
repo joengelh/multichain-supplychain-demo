@@ -3,8 +3,18 @@ from flask_login import login_required, current_user
 from . import db
 import json
 import requests
+import ast
+import os
+from dotenv import load_dotenv
 
 views = Blueprint('views', __name__)
+
+def getNodeAddress():
+    load_dotenv()
+    nodes = ast.literal_eval(os.getenv('NODES'))
+    currentNode = next((node for node in nodes if node['name'] == current_user.name), None)
+    apiAddress = 'http://localhost:' + str(currentNode['port']) + '/api/v1'
+    return apiAddress
 
 def getBalance(usr):
     balance = requests.get('http://localhost:5001/api/v1/balance', 
