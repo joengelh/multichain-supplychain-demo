@@ -1,13 +1,17 @@
-{% extends "base.html" %} {% block title %}Send{% endblock %} {% block content
+{% extends "base.html" %} {% block title %}History{% endblock %} {% block content
 %}
-<h1 align="center">Send Assets</h1>
+<h1 align="center">History of Transactions</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for item in transactions %}
   <li class="list-group-item">
-	  Asset: <strong>{{ item.balance.assets.name }}</strong><br></br>
-	  Quantity: <strong>{{ item.balance.assets.qty }}</strong><br></br>
-    Recipient: <strong>{{ item.balance.addresses }}</strong><br></br>
-    Blockhash: <strong>{{ item.balance.blockhash }}</strong><br></br>
+    {%for asset in item.assets %}
+	    Asset: <strong>{{ asset.name }}</strong><br></br>
+	    Quantity: <strong>{{ asset.qty }}</strong><br></br>
+    {% endfor %}
+    {%for addr in item.addresses %}
+      Recipient: <strong>{{ addr }}</strong><br></br>
+    {% endfor %}
+    Blockhash: <strong>{{ item.blockhash }}</strong><br></br>
   </li>
   {% endfor %}
 {% endblock %}

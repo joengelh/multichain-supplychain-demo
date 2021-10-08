@@ -65,10 +65,11 @@ def issue():
             balance=getBalance(current_user),
             inventory=inventory["data"])
 
-@views.route('/history', methods=['GET'])
+@views.route('/history', methods=['GET', 'POST'])
 @login_required
 def history():
     api = 'http://' + current_user.host + '/api/v1/history'
     result = requests.get(api, json={}).json()
-    return render_template("history.html", 
-        transactions=result["data"])
+    print("ye")
+    print(result["data"][0]["addresses"][0])
+    return render_template("history.html")
