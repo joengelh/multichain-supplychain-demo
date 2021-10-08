@@ -37,7 +37,6 @@ def send():
         address = request.form['address']
         sendApi = 'http://' + current_user.host + '/api/v1/send'
         result = requests.post(sendApi, json={"name":name,"amount":float(amount),"address":address}).json()
-        print(result)
         flash('Sending Successful!', category='success')
     api = 'http://' + current_user.host + '/api/v1/inventory'
     inventory = requests.get(api, json={}).json()
@@ -46,6 +45,21 @@ def send():
             balance=getBalance(current_user),
             inventory=inventory["data"])
 
+@views.route('/issue', methods=['GET', 'POST'])
+@login_required
+def issue():
+    if request.method == 'POST':
+        amount = request.form['amount']
+        name = request.form['name']
+        issueApi = 'http://' + current_user.host + '/api/v1/issue'
+        result = requests.post(issueApi, json={"name":name,"amount":float(amount)}).json()
+        flash('Issuing Successful!', category='success')
+    api = 'http://' + current_user.host + '/api/v1/inventory'
+    inventory = requests.get(api, json={}).json()
+    return render_template("issue.html",
+            user=current_user,
+            balance=getBalance(current_user),
+            inventory=inventory["data"])
 
 @views.route('/fund', methods=['GET', 'POST'])
 @login_required

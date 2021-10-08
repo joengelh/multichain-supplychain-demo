@@ -1,6 +1,6 @@
-{% extends "base.html" %} {% block title %}Send{% endblock %} {% block content
+{% extends "base.html" %} {% block title %}Issue{% endblock %} {% block content
 %}
-<h1 align="center">Send Assets</h1>
+<h1 align="center">Issue assets</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for item in inventory %}
   <li class="list-group-item">
@@ -21,9 +21,6 @@
     <h3>Amount</h3>
     <textarea name="amount" id="amount" class="form-control"></textarea>
   </div>
-  <div class="column">
-  <h3>Recipient Address</h3>
-  <textarea name="address" id="address" class="form-control"></textarea>
   </div>
 </div> 
 <br />

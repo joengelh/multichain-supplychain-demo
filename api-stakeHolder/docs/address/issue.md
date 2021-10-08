@@ -1,10 +1,10 @@
-# Issue More
+# Issue
 
 Issues a specified amount of an asset specifically named.
 The asset is only divisible by one since it is supposed to represent 
 real units the OEM produces.
 
-**URL** : `/api/v1/issueMore/`
+**URL** : `/api/v1/issue/`
 
 **Method** : `POST`
 
