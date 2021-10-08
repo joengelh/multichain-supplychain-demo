@@ -2,9 +2,9 @@
 %}
 <h1 align="center">History of Transactions</h1>
 <ul class="list-group list-group-flush" id="notes">
-  {% for item in transactions %}
+  {% for item in history %}
   <li class="list-group-item">
-    {%for asset in item.assets %}
+    {%for asset in item.balance.assets %}
 	    Asset: <strong>{{ asset.name }}</strong><br></br>
 	    Quantity: <strong>{{ asset.qty }}</strong><br></br>
     {% endfor %}
