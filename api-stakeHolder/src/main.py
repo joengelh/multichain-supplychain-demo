@@ -64,7 +64,7 @@ class issue(Resource):
         except:
             pass
         result = client.issuemore(client.listaddresses()[0]['address'],
-            data['asset'],data['amount'])
+            data['name'],data['amount'])
         return {'data':result}
 
 #create path to send

@@ -53,7 +53,11 @@ def issue():
         name = request.form['name']
         issueApi = 'http://' + current_user.host + '/api/v1/issue'
         result = requests.post(issueApi, json={"name":name,"amount":float(amount)}).json()
-        flash('Issuing Successful!', category='success')
+        try: 
+            if result["message"] == "Internal Server Error":
+                flash('No Permission to issue ' + name, category='error')
+        except:
+            flash('Issuing Successful!', category='success')
     api = 'http://' + current_user.host + '/api/v1/inventory'
     inventory = requests.get(api, json={}).json()
     return render_template("issue.html",
