@@ -39,7 +39,6 @@ def logout():
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
-        wallet = request.form.get('wallet')
         email = request.form.get('email')
         host = request.form.get('host')
         first_name = request.form.get('firstName')
@@ -60,7 +59,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(wallet=wallet, host=host, email=email, first_name=first_name, password=generate_password_hash(
+            new_user = User(host=host, email=email, first_name=first_name, password=generate_password_hash(
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()

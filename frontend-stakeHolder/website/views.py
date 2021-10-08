@@ -14,10 +14,19 @@ def getBalance(usr):
     else:
         return float(balance["data"])
 
+def getWallet(usr):
+    address = 'http://' + usr.host + '/api/v1/ownAddress'
+    ownAddress = requests.get(address,
+        json={}).json()
+    return ownAddress["data"]
+
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template("home.html", user=current_user, balance=getBalance(current_user))
+    return render_template("home.html", 
+            user=current_user, 
+            ownAddress=getWallet(current_user), 
+            balance=getBalance(current_user))
 
 @views.route('/fund', methods=['GET', 'POST'])
 @login_required
@@ -25,7 +34,7 @@ def fund():
     if request.method == 'POST':
         amount = request.form['amount']
         requests.post('http://localhost:5001/api/v1/fund', 
-            json={'account': current_user.wallet, 'amount': float(amount)})
+            json={'account': getWallet(current_user), 'amount': float(amount)})
         flash('Funding Successful!', category='success')
     return render_template("fund.html", user=current_user, balance=getBalance(current_user))
 
@@ -35,7 +44,7 @@ def fund():
 @login_required
 def refund():
     ownAddress = requests.get('http://localhost:5001/api/v1/ownAddress').json()
-    if ownAddress["data"] == current_user.wallet:    
+    if ownAddress["data"] == getWallet(current_user):    
         if request.method == 'POST':
             amount = request.form['amount']
             requests.post('http://localhost:5001/api/v1/refund', 
