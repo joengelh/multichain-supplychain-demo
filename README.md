@@ -8,10 +8,10 @@ Thereafter copy the .env.sample file to .env and fill in your nodes addresses an
 
 :warning: **Dont share private keys in production**: seperate the .env files to each node according to ownership instead :warning:
 
-In order to install the required python packages simply run:
+In order to install the required python packages run:
 
 ```bash
-pip3 install -r <endpoint directory>/src/requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Participants
@@ -19,8 +19,8 @@ A multitude of web-based apps give every one of the following stakeholders direc
 
 name | description | port webinterface | port api | status
 -----|-------------|-------------------|----------|-------
-serviceProvider | participant adding value to product | 5008 | 5009 | :yellow_heart:
-customer | product purchasing party | 5006 | 5007 | :yellow_heart:
+serviceProvider | participant adding value to product | 5004 | 5009 | :yellow_heart:
+customer | product purchasing party | 5004 | 5007 | :yellow_heart:
 iot | device attached to product, monitoring | no frontend required | 5005 | :green_heart:
 oem | initial producer of product | 5004 | 5003 | :yellow_heart:
 bank | issuer of stablecoin USD | 5002 | 5001 | :green_heart:
@@ -52,20 +52,11 @@ A multichain smart filter ensures the customer will only buy the product if its 
 11. customer reviews data, accepts
 
 ## Run it!
-After the multichain has been deployed using for example this [Github Project](https://github.com/joengelh/multichain-ansible-automation) and the .env file has been filled with the nodes addresses and private keys, the webservers can be started.
-For that, from the projects root directory, simple call them using:
+After the multichain has been deployed using for example this [Github Project](https://github.com/joengelh/multichain-ansible-automation) and the .env file has been filled with the nodes addresses and private keys, the webservers can be started by executing the **run.sh** script.
 
 ```bash
-python3 api-bank/main.py
+bash run.sh
 ```
-
-in case of an API endpoint or:
-
-```bash
-python3 frontend-bank/main.py
-```
-
-in case of a web ui.
 
 ## Powerpoint
 

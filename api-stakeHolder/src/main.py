@@ -128,5 +128,5 @@ api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
 api.add_resource(listTransactions, '/api/v1/listTransactions')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=PORT)
+    app.run(host='0.0.0.0', port=int(PORT))
 
