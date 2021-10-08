@@ -71,7 +71,7 @@ class issueMore(Resource):
 class send(Resource):
     def post(self):
         data = request.get_json()
-        client.sendasset(data['address'],data['asset'],data['amount'])
+        client.sendasset(data['address'],data['name'],data['amount'])
         return {'data':data['amount']}
 
 #create path to create exchange requireing asset and price

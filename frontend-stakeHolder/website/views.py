@@ -27,10 +27,6 @@ def home():
             ownAddress=getWallet(current_user), 
             balance=getBalance(current_user))
 
-#@views.route('/send', methods=['GET', 'POST'])
-#@login_required
-#def send():
-    #if request.method == 'POST':
     #    amount = request.form['amount']
     #    name = request.form['name']
     #    address = request.form['address']
@@ -41,15 +37,16 @@ def home():
 @views.route('/send', methods=['GET', 'POST'])
 @login_required
 def send():
+    api = 'http://' + current_user.host + '/api/v1/inventory'
+    inventory = requests.get(api, json={}).json()
     if request.method == 'POST':
         amount = request.form['amount']
-        requests.post('http://localhost:5001/api/v1/fund',
-            json={'account': getWallet(current_user), 'amount': float(amount)})
-        flash('Funding Successful!', category='success')
-    else:
-        api = 'http://' + current_user.host + '/api/v1/inventory'
-        inventory = requests.get(api, json={}).json()
-        print(inventory["data"])
+        name = request.form['name']
+        address = request.form['address']
+        sendApi = 'http://' + current_user.host + '/api/v1/send'
+        result = request.post(sendApi,
+            json={'name':name,'amount':float(amount),'address':address}).json()
+        flash('Sending Successful!', category='success')
     return render_template("send.html", 
             user=current_user, 
             balance=getBalance(current_user),
