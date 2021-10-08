@@ -15,8 +15,8 @@ def getBalance(usr):
         return float(balance["data"])
 
 def getWallet(usr):
-    address = 'http://' + usr.host + '/api/v1/ownAddress'
-    ownAddress = requests.get(address,
+    api = 'http://' + usr.host + '/api/v1/ownAddress'
+    ownAddress = requests.get(api,
         json={}).json()
     return ownAddress["data"]
 
@@ -27,6 +27,21 @@ def home():
             user=current_user, 
             ownAddress=getWallet(current_user), 
             balance=getBalance(current_user))
+
+@views.route('/send', methods=['GET', 'POST'])
+@login_required
+def send():
+    #api = 'http://' + usr.host + '/api/v1/send'
+    #inventory = request.get(api, json={})
+    #if request.method == 'POST':
+    #    amount = request.form['amount']
+    #    name = request.form['name']
+    #    address = request.form['address']
+    #    api = 'http://' + usr.host + '/api/v1/send'
+    #    result = request.post(api,
+    #            json={'name':asset,'amount':amount,'address':address})
+    return render_template("send.html")
+
 
 @views.route('/fund', methods=['GET', 'POST'])
 @login_required
