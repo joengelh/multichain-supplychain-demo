@@ -27,7 +27,10 @@ This API Serves to the **frontend-oem**, **frontend-customer**, **frontend-servi
 * reviewing proposed business deals
 * accepting business deals as atomic exchanges
 * withdrawing a business deal proposal
-* list all business proposals
+* list all transactions
+* activating virutal IoT device
+* deactivating virutal IoT device
+* listing all virtual IoT devices
 
 ## Directions
 
