@@ -78,6 +78,17 @@
             </div>
           </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Data Stream
+          </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	            <a class="dropdown-item" id="activate" href="/activate">Activate IoT</a>
+              <a class="dropdown-item" id="deactivate" href="/deactivate">Deactivate IoT</a>
+              <a class="dropdown-item" id="listAll" href="/listAll">List IoT</a>
+            </div>
+          </li>
+
           <a class="nav-item nav-link" id="history" href="/history">History</a>
           <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
           {% else %}

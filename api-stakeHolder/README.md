@@ -47,3 +47,7 @@ For simplicities sake in the demo all APIs are being served by one central host 
 * [acceptExchange](docs/address/acceptExchange.md) : `POST /api/v1/acceptExchange`
 * [withdrawExchange](docs/address/withdrawExchange.md) : `POST /api/v1/withdrawExchange`
 * [history](docs/address/history.md) : `GET /api/v1/history`
+* [activate](docs/address/activate.md) : `GET /api/v1/activate`
+* [deactivate](docs/address/deactivate.md) : `GET /api/v1/deactivate`
+* [listAll](docs/address/listAll.md) : `GET /api/v1/listAll`
+

@@ -46,7 +46,6 @@ class iot:
         with open('/var/log/syslog') as f:
             lines = f.readlines()
             f.close()
-
         sensorData['json']['temperature'] = random.uniform(14, 24)
         sensorData['json']['humidity'] = random.randint(10,22)
         sensorData['json']['maxG'] = random.uniform(0, 0.1)

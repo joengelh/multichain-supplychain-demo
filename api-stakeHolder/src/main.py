@@ -7,6 +7,8 @@ from flask_restful import Resource, Api, reqparse
 import ast
 import sys
 
+import virtualIotDevice
+
 #get port and name from arguments
 print("Give name of client as first, port as second argument like python3 api-shareHolder/main.py oem 5003")
 NAME = sys.argv[1]
@@ -22,6 +24,9 @@ client = c = mcrpc.RpcClient(
         bank['user'],
         bank['password']
     )
+
+#initiate virtualIotDevice
+iot = virtualIotDevice.iot()
 
 #initiate falsk app
 app = Flask(__name__)
@@ -114,6 +119,26 @@ class history(Resource):
         result = client.listwallettransactions()
         return {'data':result}
 
+#activate new iot device writing to stream,
+#creating stream if not already present
+class activate(Resource):
+    def post(self):
+        data = request.get_json()
+        iot.activate(data["name"])
+        return {'data':data["name"]}
+
+#deactivate iot device thus not writing to stream furtherly
+class deactivate(Resource):
+    def post(self):
+        data = request.get_json()
+        iot.deactivate(data["name"])
+        return {'data':data["name"]}
+
+#list active iot devices writing to streams
+class listAll(Resource):
+    def get(self):
+        return {'data':iot.listAll()}
+
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
 api.add_resource(balance, '/api/v1/balance')
@@ -125,6 +150,9 @@ api.add_resource(reviewExchange, '/api/v1/reviewExchange')
 api.add_resource(acceptExchange, '/api/v1/acceptExchange')
 api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
 api.add_resource(history, '/api/v1/history')
+api.add_resource(activate, '/api/v1/activate')
+api.add_resource(deactivate, '/api/v1/deactivate')
+api.add_resource(listAll, '/api/v1/listAll')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(PORT))

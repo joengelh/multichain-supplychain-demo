@@ -1,4 +1,4 @@
-# Bank Frontend
+# Stakeholder Frontend
 
 ### Launch
 
@@ -22,10 +22,13 @@ Afterwards the following sites can be accessed:
 
 path | description
 -----|------------
-/    | home
+/ | home
 /login | login using existing email and password
 /sign-up | sign up using wallet address
+/sendAssets | send an asset
+/issueAssets | issue more of an asset
+/newExchange | create new atomic exchange
+/existingExchange | manage existing atomic exchange
+/iot | list and control IoT virtual Devicec
+/history | history of transactions
 /logout | log out
-/fund | mint new USD stablecoins to own address
-/refund | if user not bank, show burn address <br> if user is bank, give opportunity to burn directly
-
