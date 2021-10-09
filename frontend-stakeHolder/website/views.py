@@ -70,7 +70,6 @@ def issue():
 def history():
     api = 'http://' + current_user.host + '/api/v1/history'
     result = requests.get(api, json={}).json()
-    print(result["data"][0])
     return render_template("history.html",
             user=current_user,
             balance=getBalance(current_user),

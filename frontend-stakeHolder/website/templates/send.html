@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Send{% endblock %} {% block content
 %}
-<h1 align="center">Send Assets</h1>
+<h1 align="center">Inventory</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for item in inventory %}
   <li class="list-group-item">
@@ -9,7 +9,9 @@
   </li>
   {% endfor %}
 </ul>
-<br /><br />
+<br />
+<h1 align="center">Send Assets</h1>
+<br />
 <form method="POST">
 <div class="row3" align="center">
   <div class="column3">
