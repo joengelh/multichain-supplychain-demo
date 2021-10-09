@@ -9,7 +9,7 @@ views = Blueprint('views', __name__)
 def getBalance(usr):
     address= 'http://' + usr.host + '/api/v1/balance'
     balance = requests.get(address, 
-        json={'asset': "USD"}).json()
+        json={'name': "USD"}).json()
     if balance["data"] is None:
         return 0
     else:
