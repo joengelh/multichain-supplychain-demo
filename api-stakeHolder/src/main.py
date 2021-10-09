@@ -135,9 +135,15 @@ class deactivate(Resource):
         return {'data':data["name"]}
 
 #list active iot devices writing to streams
-class listAll(Resource):
+class listActive(Resource):
     def get(self):
-        return {'data':iot.listAll()}
+        return {'data':iot.listActive()}
+
+#list items written by IoT Device
+class listItems(Resource):
+    def get(self):
+        data = request.get_json()
+        return {'data':iot.listItems(data["name"])}
 
 api.add_resource(helloWorld, '/')
 api.add_resource(ownAddress, '/api/v1/ownAddress')
@@ -152,7 +158,8 @@ api.add_resource(withdrawExchange, '/api/v1/withdrawExchange')
 api.add_resource(history, '/api/v1/history')
 api.add_resource(activate, '/api/v1/activate')
 api.add_resource(deactivate, '/api/v1/deactivate')
-api.add_resource(listAll, '/api/v1/listAll')
+api.add_resource(listActive, '/api/v1/listActive')
+api.add_resource(listItems, '/api/v1/listItems')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(PORT))

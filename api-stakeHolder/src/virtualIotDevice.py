@@ -32,6 +32,7 @@ class iot:
 
     #get random measurements
     def measure(self):
+        #create dict for filling randomly later
         sensorData = {'json':{'temperature':0,
             'humidity':0,
             'maxG':0,
@@ -41,11 +42,13 @@ class iot:
             'syslog':""
         }
         }
-
+        
         #get syslog files
         with open('/var/log/syslog') as f:
             lines = f.readlines()
             f.close()
+
+        #fill dict with random measurements
         sensorData['json']['temperature'] = random.uniform(14, 24)
         sensorData['json']['humidity'] = random.randint(10,22)
         sensorData['json']['maxG'] = random.uniform(0, 0.1)
@@ -55,27 +58,35 @@ class iot:
         return sensorData
 
     def send(self):
-        self.powerOff = False
         while True:
             for sensor in self.sensorsList:
-                data = self.measure()
                 self.client.publish(sensor,"sensor",self.measure())
             time.sleep(10)
 
     def create(self, name):
         if name not in self.sensorsList:
             try:
-                client.create("stream",data["name"],False)
+                self.client.create("stream",name,False)
             except:
                 pass
     
     def activate(self,name):
         if name not in self.sensorsList:
             self.create(name)
-            self.sensorsList.append(name)
+            result = self.sensorsList.append(name)
+            return result
+        else: 
+            return "Sensor already active." 
 
     def deactivate(self, name):
         self.sensorsList.remove(name)
 
-    def listAll(self):
+    def listActive(self):
         return self.sensorsList
+
+    def listItems(self, name):
+        if name in self.sensorsList:
+            result = self.client.liststreamitems(name)
+            return result
+        else:
+            return "Sensor not active."

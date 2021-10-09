@@ -1,8 +1,8 @@
-# List All
+# List Items
 
-Returns list of all active IoT Devices.
+Returns list of all items written by specific IoT Device.
 
-**URL** : `/api/v1/listAll
+**URL** : `/api/v1/listItems
 
 **Method** : `GET`
 
@@ -12,10 +12,11 @@ Returns list of all active IoT Devices.
 
 **Data constraints**
 
-NO
+Name of IoT Device
 
 ```json
 {
+    "name":"[string]"
 }
 ```
 
@@ -23,12 +24,13 @@ NO
 
 ```json
 {
+    "name":"device1"
 }
 ```
 
 ## Success Response
 
-**Condition** : If everything is OK.
+**Condition** : If everything is OK and sensor is active.
 
 **Code** : `200 OK`
 
