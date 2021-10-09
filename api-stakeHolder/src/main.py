@@ -38,7 +38,7 @@ class balance(Resource):
         data = request.get_json()
         balances = client.getaddressbalances(client.listaddresses()[0]['address'])
         if balances != 0:
-            balanceAsset = next((item for item in balances if item['name'] == data['asset']), None)
+            balanceAsset = next((item for item in balances if item['name'] == data['name']), None)
             return {'data':balanceAsset['qty']}
         else: 
             return {'data':0}
@@ -78,7 +78,7 @@ class send(Resource):
 class atomicExchange(Resource):
     def post(self):
         data = request.get_json()
-        lock = client.preparelockunspent({data["asset"]:data["amount"]},False)
+        lock = client.preparelockunspent({data["name"]:data["amount"]},False)
         result = client.createrawexchange(lock["txid"],
             lock["vout"],{data["barter"]:data["price"]})
         return {'data':result}

@@ -18,7 +18,7 @@ Provide asset to query for
 
 ```json
 }
-    "asset": "[String]"
+    "name": "[String]"
 }
 ```
 
