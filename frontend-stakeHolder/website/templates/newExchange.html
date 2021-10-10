@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block title %}New Exchange{% endblock %} {% block content
+%}
+<br /><br />
+<h1 align="center">Create a new Atomic Exchange</h1>
+<br /><br />
+<form method="POST">
+<div class="row4" align="center">
+  <div class="column4">
+    <h3>Offered Asset</h3>
+    <textarea name="name" id="name" class="form-control"></textarea>
+  </div>
+  <div class="column4">
+    <h3>Offered Amount</h3>
+    <textarea name="amount" id="amount" class="form-control"></textarea>
+  </div>
+  <div class="column4">
+    <h3>Asked Asset</h3>
+    <textarea name="barter" id="barter" class="form-control"></textarea>
+  </div>
+  <div class="column4">
+    <h3>Asked Amount</h3>
+    <textarea name="price" id="price" class="form-control"></textarea>
+  </div>
+</div>
+</div> 
+<br />
+<div align="center">
+  <button type="submit" class="btn btn-success">Submit</button>
+</div>
+</form>
+<br /><br /><br />
+<div align="center">
+  <input type="text" size="100" value="{{ id }}" id="myInput">
+  <button onclick="clipboard()">Copy ID</button> 
+</div>
+{% endblock %}
+    

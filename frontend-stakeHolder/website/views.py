@@ -72,7 +72,6 @@ def history():
     result = requests.get(api, json={}).json()
     return render_template("history.html",
             user=current_user,
-            balance=getBalance(current_user),
             history=result["data"])
 
 @views.route('/activate', methods=['GET', 'POST'])
@@ -86,8 +85,7 @@ def activate():
     api = 'http://' + current_user.host + '/api/v1/listActive'
     active = requests.get(api, json={}).json()
     return render_template("activate.html", 
-            user=current_user, 
-            balance=getBalance(current_user),
+            user=current_user,
             active=active["data"])
 
 @views.route('/deactivate', methods=['GET', 'POST'])
@@ -101,8 +99,7 @@ def deactivate():
     api = 'http://' + current_user.host + '/api/v1/listActive'
     active = requests.get(api, json={}).json()
     return render_template("deactivate.html", 
-            user=current_user, 
-            balance=getBalance(current_user),
+            user=current_user,
             active=active["data"])
 
 @views.route('/data', methods=['GET', 'POST'])
@@ -114,10 +111,26 @@ def data():
         result = requests.get(sendApi, json={"name":name}).json()
         flash('Data Reading Successful!', category='success')
         return render_template("data.html", 
-                user=current_user, 
-                balance=getBalance(current_user),
+                user=current_user,
                 items=result["data"])
     else:
-        return render_template("data.html", 
-                user=current_user, 
-                balance=getBalance(current_user))
+        return render_template("data.html", user=current_user)
+
+@views.route('/newExchange', methods=['GET', 'POST'])
+@login_required
+def newExchange():
+    if request.method == 'POST':
+        name = request.form['name']
+        amount = request.form['amount']
+        barter = request.form['barter']
+        price = request.form['price']
+        sendApi = 'http://' + current_user.host + '/api/v1/atomicExchange'
+        result = requests.post(sendApi, json={"name":name,
+            "amount":float(amount),"barter":barter,"price":float(price)}).json()
+        flash('Atomic Exchange Created Successfuly!', category='success')
+        return render_template("newExchange.html", 
+            user=current_user,
+            id=result["data"])
+    else:
+        return render_template("newExchange.html", 
+            user=current_user)
