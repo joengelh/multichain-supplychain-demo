@@ -134,3 +134,35 @@ def newExchange():
     else:
         return render_template("newExchange.html", 
             user=current_user)
+
+@views.route('/manageExchange', methods=['GET', 'POST'])
+@login_required
+def manageExchange():
+    review = ""
+    if request.method == 'POST':
+        id = request.form['id']
+        if request.form.get('action') == 'accept':
+            acceptApi = 'http://' + current_user.host + '/api/v1/acceptExchange'
+            try:
+                result = requests.post(acceptApi, json={"id":id}).json()
+                flash('Atomic Exchange accepted Successfuly!', category='success')
+            except: 
+                flash('Atomic Exchange was not accepted!', category='error')
+        elif request.form.get('action') == 'withdraw':
+            withdrawApi = 'http://' + current_user.host + '/api/v1/withdrawExchange'
+            try:
+                result = requests.post(withdrawApi, json={"id":id}).json()
+                flash('Atomic Exchange withdrawn Successfuly!', category='success')
+            except: 
+                flash('Atomic Exchange Withdrawal was not accepted!', category='error')
+        elif request.form.get('action') == 'review':
+            reviewApi = 'http://' + current_user.host + '/api/v1/reviewExchange'
+            try:
+                result = requests.get(reviewApi, json={"id":id}).json()
+                review = result["data"]
+                print(review)
+            except: 
+                flash('Atomic Exchange does not exist!', category='error')
+    return render_template("manageExchange.html", 
+        user=current_user,
+        review=review)

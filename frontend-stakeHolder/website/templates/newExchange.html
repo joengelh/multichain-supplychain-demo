@@ -29,9 +29,12 @@
 </div>
 </form>
 <br /><br /><br />
-<div align="center">
-  <input type="text" size="100" value="{{ id }}" id="myInput">
-  <button onclick="clipboard()">Copy ID</button> 
+<form>
+<div class="form-group" align="center">
+  <input type="text" class="form-control" value="{{ id }}" id="myInput">
+  <br />
+  <button class="btn btn-success" onclick="clipboard()">Copy ID</button> 
 </div>
+</form>
 {% endblock %}
     

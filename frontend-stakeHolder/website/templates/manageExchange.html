@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Manage Exchange{% endblock %} {% block content
+%}
+<br /><br />
+<h1 align="center">Manage an existing Atomic Exchange</h1>
+<br /><br />
+<form method="POST">
+<br />
+<div class="form-group" align="center">
+  <input
+      type="text"
+      class="form-control"
+      id="id"
+      name="id"
+      placeholder="Atomic Exchange ID"
+    />
+  <br />
+  <input type="submit" class="btn btn-success" name="action" value="review" />
+  <input type="submit" class="btn btn-success" name="action" value="accept" />
+  <input type="submit" class="btn btn-success" name="action" value="withdraw" />
+</form>
+{% endblock %}
+    

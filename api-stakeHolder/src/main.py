@@ -92,17 +92,20 @@ class atomicExchange(Resource):
 class reviewExchange(Resource):
     def get(self):
         data = request.get_json()
-        result = client.decoderawexchange(data["proposal"])
+        try:
+            result = client.decoderawexchange(data["id"])
+        except:
+            result = "Exchange does not exist"
         return {'data':result}
 
 #create path to accept exchange
 class acceptExchange(Resource):
     def post(self):
         data = request.get_json()
-        proposal = client.decoderawexchange(data["proposal"])
+        proposal = client.decoderawexchange(data["id"])
         lock = client.preparelockunspent(
             {proposal["ask"]["assets"][0]["name"]:proposal["ask"]["assets"][0]["qty"]},False)
-        result = client.completerawexchange(data["proposal"],lock["txid"],0,
+        result = client.completerawexchange(data["id"],lock["txid"],0,
             {proposal["offer"]["assets"][0]["name"]:proposal["offer"]["assets"][0]["qty"]})
         return {'data':result}
 
@@ -110,7 +113,7 @@ class acceptExchange(Resource):
 class withdrawExchange(Resource):
     def post(self):
         data = request.get_json()
-        result = client.disablerawtransaction(data["proposal"])
+        result = client.disablerawtransaction(data["id"])
         return {'data':result}
 
 #create path to list wallets transactions
