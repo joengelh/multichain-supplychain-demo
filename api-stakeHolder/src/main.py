@@ -116,23 +116,20 @@ class withdrawExchange(Resource):
 #create path to list wallets transactions
 class history(Resource):
     def get(self):
-        result = client.listwallettransactions()
-        return {'data':result}
+        return {'data':client.listwallettransactions()}
 
 #activate new iot device writing to stream,
 #creating stream if not already present
 class activate(Resource):
     def post(self):
         data = request.get_json()
-        iot.activate(data["name"])
-        return {'data':data["name"]}
+        return {'data':iot.activate(data["name"])}
 
 #deactivate iot device thus not writing to stream furtherly
 class deactivate(Resource):
     def post(self):
         data = request.get_json()
-        iot.deactivate(data["name"])
-        return {'data':data["name"]}
+        return {'data':iot.deactivate(data["name"])}
 
 #list active iot devices writing to streams
 class listActive(Resource):
