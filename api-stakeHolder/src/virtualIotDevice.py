@@ -49,11 +49,11 @@ class iot:
             f.close()
 
         #fill dict with random measurements
-        sensorData['json']['temperature'] = random.uniform(14, 24)
-        sensorData['json']['humidity'] = random.randint(10,22)
-        sensorData['json']['maxG'] = random.uniform(0, 0.1)
-        sensorData['json']['geoLocation']['latitude'] = random.uniform(-90, 90)
-        sensorData['json']['geoLocation']['longditude'] = random.uniform(-180, 180)
+        sensorData['json']['temperature'] = str(random.uniform(14, 24))
+        sensorData['json']['humidity'] = str(random.randint(10,22))
+        sensorData['json']['maxG'] = str(random.uniform(0, 0.1))
+        sensorData['json']['geoLocation']['latitude'] = str(random.uniform(-90, 90))
+        sensorData['json']['geoLocation']['longditude'] = str(random.uniform(-180, 180))
         sensorData['json']['syslog'] = str(lines[-1])
         return sensorData
 
@@ -73,20 +73,24 @@ class iot:
     def activate(self,name):
         if name not in self.sensorsList:
             self.create(name)
-            result = self.sensorsList.append(name)
-            return result
+            self.sensorsList.append(name)
+            return "Sensor Activated"
         else: 
             return "Sensor already active." 
 
     def deactivate(self, name):
-        self.sensorsList.remove(name)
+        if name in self.sensorsList:
+            self.sensorsList.remove(name)
+            return "Sensor Deactivated"
+        else: 
+            return "Sensor already inactive." 
 
     def listActive(self):
         return self.sensorsList
 
     def listItems(self, name):
         if name in self.sensorsList:
-            result = self.client.liststreamitems(name)
-            return result
+            self.client.subscribe(name)
+            return self.client.liststreamitems(name)
         else:
             return "Sensor not active."

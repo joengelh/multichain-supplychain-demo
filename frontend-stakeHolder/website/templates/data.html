@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}IoT{% endblock %} {% block content
+%}
+<h1 align="center">Get IoT Data</h1>
+<br />
+<form method="POST">
+<div class="column1">
+  <h3 align = "center">Atomic Exchange ID</h3>
+  <textarea name="name" id="name" class="form-control"></textarea>
+</div> 
+<br />
+<div align="center">
+  <button type="submit" class="btn btn-success">Submit</button>
+</div>
+</form>
+<br />
+<h1 align="center">IoT Data</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for item in items %}
+  <li class="list-group-item">
+	  Name: <strong>{{ item }}</strong><br></br>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+    

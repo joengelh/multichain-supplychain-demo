@@ -104,3 +104,20 @@ def deactivate():
             user=current_user, 
             balance=getBalance(current_user),
             active=active["data"])
+
+@views.route('/data', methods=['GET', 'POST'])
+@login_required
+def data():
+    if request.method == 'POST':
+        name = request.form['name']
+        sendApi = 'http://' + current_user.host + '/api/v1/listItems'
+        result = requests.get(sendApi, json={"name":name}).json()
+        flash('Data Reading Successful!', category='success')
+        return render_template("data.html", 
+                user=current_user, 
+                balance=getBalance(current_user),
+                items=result["data"])
+    else:
+        return render_template("data.html", 
+                user=current_user, 
+                balance=getBalance(current_user))
