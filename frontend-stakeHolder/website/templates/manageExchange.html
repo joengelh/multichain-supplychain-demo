@@ -18,11 +18,13 @@
   <input type="submit" class="btn btn-success" name="action" value="accept" />
   <input type="submit" class="btn btn-success" name="action" value="withdraw" />
 </form>
-<br /><br />
-<li class="list-group-item">
-  Offer: <strong>{{ review.offer.assets[0].qty }} {{ review.offer.assets[0].name }}</strong><br />
-  Ask: <strong>{{ review.ask.assets[0].qty }} {{ review.ask.assets[0].name }}</strong><br />
-  Complete: <strong>{{ review.complete }}</strong>
-</li>
+{% if review is defined %}
+  <br /><br />
+  <li class="list-group-item">
+    Offer: <strong>{{ review.offer.assets[0].qty }} {{ review.offer.assets[0].name }}</strong><br />
+    Ask: <strong>{{ review.ask.assets[0].qty }} {{ review.ask.assets[0].name }}</strong><br />
+    Complete: <strong>{{ review.complete }}</strong>
+  </li>
+{% endif %}
 {% endblock %}
     
