@@ -105,8 +105,9 @@ class acceptExchange(Resource):
         proposal = client.decoderawexchange(data["id"])
         lock = client.preparelockunspent(
             {proposal["ask"]["assets"][0]["name"]:proposal["ask"]["assets"][0]["qty"]},False)
-        result = client.completerawexchange(data["id"],lock["txid"],0,
+        complete = client.completerawexchange(data["id"],lock["txid"],0,
             {proposal["offer"]["assets"][0]["name"]:proposal["offer"]["assets"][0]["qty"]})
+        result = client.sendrawtransaction(complete)
         return {'data':result}
 
 #create path to withdraw from exchange
