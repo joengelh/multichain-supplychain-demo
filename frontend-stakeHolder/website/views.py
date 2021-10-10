@@ -74,3 +74,33 @@ def history():
             user=current_user,
             balance=getBalance(current_user),
             history=result["data"])
+
+@views.route('/activate', methods=['GET', 'POST'])
+@login_required
+def activate():
+    if request.method == 'POST':
+        name = request.form['name']
+        sendApi = 'http://' + current_user.host + '/api/v1/activate'
+        result = requests.post(sendApi, json={"name":name}).json()
+        flash('Activation Successful!', category='success')
+    api = 'http://' + current_user.host + '/api/v1/listActive'
+    active = requests.get(api, json={}).json()
+    return render_template("activate.html", 
+            user=current_user, 
+            balance=getBalance(current_user),
+            active=active["data"])
+
+@views.route('/deactivate', methods=['GET', 'POST'])
+@login_required
+def deactivate():
+    if request.method == 'POST':
+        name = request.form['name']
+        sendApi = 'http://' + current_user.host + '/api/v1/deactivate'
+        result = requests.post(sendApi, json={"name":name}).json()
+        flash('Deactivation Successful!', category='success')
+    api = 'http://' + current_user.host + '/api/v1/listActive'
+    active = requests.get(api, json={}).json()
+    return render_template("deactivate.html", 
+            user=current_user, 
+            balance=getBalance(current_user),
+            active=active["data"])
