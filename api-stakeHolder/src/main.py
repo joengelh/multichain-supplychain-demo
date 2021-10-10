@@ -14,15 +14,15 @@ print("Give name of client as first, port as second argument like python3 api-sh
 NAME = sys.argv[1]
 PORT = sys.argv[2]
 
-#connect to banks multichain node
+#connect to nodes multichain node
 load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
-bank = next((node for node in nodes if node['name'] == NAME), None)
+node = next((node for node in nodes if node['name'] == NAME), None)
 client = c = mcrpc.RpcClient(
-        bank['ip'], 
-        bank['port'], 
-        bank['user'],
-        bank['password']
+        node['ip'], 
+        node['port'], 
+        node['user'],
+        node['password']
     )
 
 #initiate virtualIotDevice

@@ -18,12 +18,12 @@ class iot:
         #connect to the blockchain
         load_dotenv()
         nodes = ast.literal_eval(os.getenv('NODES'))
-        bank = next((node for node in nodes if node['name'] == 'iot'), None)
+        iot = next((node for node in nodes if node['name'] == 'iot'), None)
         self.client = c = mcrpc.RpcClient(
-                bank['ip'], 
-                bank['port'], 
-                bank['user'],
-                bank['password']
+                iot['ip'], 
+                iot['port'], 
+                iot['user'],
+                iot['password']
             )
         thread = threading.Thread(target=self.send, args=())
         # Daemonize thread
