@@ -51,6 +51,13 @@
         display: table;
         clear: both;
       }
+      p {
+      display: -webkit-box;
+      max-width: 80%;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: auto;
+    }
     </style>
     <title>{% block title %}Home{% endblock %}</title>
   </head>
