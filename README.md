@@ -1,5 +1,5 @@
 # multichain-supplychain-demo
-This project aims to offer a drastically simple blockchain demo of a trustless supply chain, in which a customer buys an electronic device from an OEM after a service provider added value to it. Throughout the entire supply chain an IoT Device is monitoring environment parameters and a tail of the syslogs.
+This project aims to offer a drastically simple blockchain demo of a trustless supply chain, in which a customer buys an electronic device from an OEM after a service provider added value to it. Throughout the entire supply chain an IoT device is monitoring environment parameters and a tail of the syslogs for the OEM and Service Provider to be able to prove correnct treatment and secure delivery.
 
 ## Installation
 The underlying blockchain can be installed, configured and all participants permissioned using the following Ansible project on [Github](https://github.com/joengelh/multichain-ansible-automation)
@@ -19,23 +19,23 @@ A multitude of web-based apps give every one of the following stakeholders direc
 
 name | description | port webinterface | port api | status
 -----|-------------|-------------------|----------|-------
-serviceProvider | participant adding value to product | 5004 | 5009 | :yellow_heart:
-customer | product purchasing party | 5004 | 5007 | :yellow_heart:
-oem | initial producer of product | 5004 | 5003 | :yellow_heart:
-bank | issuer of stablecoin USD | 5002 | 5001 | :green_heart:
-iot | IoT Device with full copy of ledger | - | - | :green_heart:
+serviceProvider | participant adding value to product | 5004 | 5009 |
+customer | product purchasing party | 5004 | 5007 |
+oem | initial producer of product | 5004 | 5003 |
+bank | issuer of stablecoin USD | 5002 | 5001 |
+iot | IoT Device with full copy of ledger | - | - |
 
 ## Use Case
 
 In this usecase, an OEM is selling goods (electronic devices) to a customer, using a stablecoin USD.
-The stablecoin is issued by a bank and can be refunded by sending the tokens to the networks burn address.
+The stablecoin is issued by a bank on **port 5002** and can be refunded by sending the tokens to the networks burn address.
 
-In order to represent the goods on the supplychain, the OEM mints products by issuing a new asset class and selling the asset to the service provider in exchange for USD.
+In order to represent the goods on the supplychain, the OEM mints products by issuing a new asset class and selling the asset to the service provider in an atomic exchange for USD.
 
-Afterwards the service provider re-sells the product to the customer for the original price plus a markup using multichains atomic exchanges.
-From the minting of the asset until the customers reception of the product, the IoT member writes data contiuously to the blockchain regarding location, temperature, humidity, shock (G-force) and the tail of the syslogs.
+Afterwards the service provider re-sells the product to the customer for the original price plus a markup using multichains atomic exchange functionality aswell.
+From the minting of the asset until the customers reception of the product, the IoT OEM can initiate a virutal IoT device which writes data contiuously to the blockchain regarding location, temperature, humidity, shock (G-force) and the tail of the syslogs.
 
-A multichain smart filter ensures the customer will only buy the product if its has been monitored continously by the IoT device and the data does not present damaging circumstances for the product or malware deployment in the syslogs.
+Before accepting the atomic exchange both the Customer and the Service Provider can check the data written by the IoT device on **port 5004** and thus check for mistreatment or malware deployment in the syslogs.
 
 ## Run it!
 After the multichain has been deployed using for example this [Github Project](https://github.com/joengelh/multichain-ansible-automation) and the .env file has been filled with the nodes addresses and private keys, the webservers can be started by executing the **run.sh** script.
@@ -48,21 +48,14 @@ bash run.sh
 
 ![Title](images/slide1.PNG)
 
-### Starting Point
-
-![Starting Point](images/slide2.PNG)
-
-### Black Box
-
-![Black Box](images/slide3.PNG)
-
 ### The Problem
 
-![The Problem](images/slide4.PNG)
+![The supply chain scenario](images/slide2.PNG)
+![The bacl box](images/slide3.PNG)
+![required trust](images/slide4.PNG)
 
-### The Solution
+### A The Solution
 
-![The Solution](images/slide5.PNG)
-
-![Needs Met](images/slide6.PNG)
+![A trustless solution](images/slide5.PNG)
+![participants needs met](images/slide6.PNG)
 
