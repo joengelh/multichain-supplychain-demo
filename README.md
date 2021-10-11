@@ -50,9 +50,15 @@ bash run.sh
 
 ### The Problem
 
-![The supply chain scenario](images/slide2.PNG)
-![The bacl box](images/slide3.PNG)
-![required trust](images/slide4.PNG)
+![The supply chain scenario](https://user-images.githubusercontent.com/73387330/136771486-038262a0-0b76-4f3d-b2a0-3dff84e9396e.png)
+![The bacl box](https://user-images.githubusercontent.com/73387330/136771529-4d38afa2-c543-4d75-90e4-aa023c87a284.png)
+![required trust](https://user-images.githubusercontent.com/73387330/136771562-5bf0b9f9-a97c-47a4-8e48-c5005587d567.png)
+
+![grafik](https://user-images.githubusercontent.com/73387330/136771486-038262a0-0b76-4f3d-b2a0-3dff84e9396e.png)
+![grafik](https://user-images.githubusercontent.com/73387330/136771529-4d38afa2-c543-4d75-90e4-aa023c87a284.png)
+![grafik](https://user-images.githubusercontent.com/73387330/136771562-5bf0b9f9-a97c-47a4-8e48-c5005587d567.png)
+![grafik](https://user-images.githubusercontent.com/73387330/136771608-7a3798c3-3db4-428b-bf68-cf4e8f70f75f.png)
+![grafik](https://user-images.githubusercontent.com/73387330/136771632-633b15ac-934a-4c3b-a492-2ec1d9540e57.png)
 
 ### A The Solution
 
