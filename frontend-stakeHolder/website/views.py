@@ -33,7 +33,9 @@ def send():
         name = request.form['name']
         address = request.form['address']
         sendApi = 'http://' + current_user.host + '/api/v1/send'
-        result = requests.post(sendApi, json={"name":name,"amount":float(amount),"address":address}).json()
+        result = requests.post(sendApi, json={"name":name,
+            "amount":float(amount),
+            "address":address}).json()
         flash('Sending Successful!', category='success')
     api = 'http://' + current_user.host + '/api/v1/inventory'
     inventory = requests.get(api, json={}).json()
