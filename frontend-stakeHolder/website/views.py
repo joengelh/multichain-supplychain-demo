@@ -10,10 +10,7 @@ def getBalance(usr):
     address= 'http://' + usr.host + '/api/v1/balance'
     balance = requests.get(address, 
         json={'name': "USD"}).json()
-    if balance["data"] is None:
-        return 0
-    else:
-        return float(balance["data"])
+    return float(balance["data"]["qty"])
 
 def getWallet(usr):
     api = 'http://' + usr.host + '/api/v1/ownAddress'

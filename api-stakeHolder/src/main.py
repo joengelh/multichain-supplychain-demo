@@ -40,15 +40,18 @@ class helloWorld(Resource):
 #create path to check balance, requires asset
 class balance(Resource):
     def get(self):
+        print("he")
         data = request.get_json()
+        print("ye")
         balances = client.getaddressbalances(client.listaddresses()[0]['address'])
+        print("no")
         try:
             balanceAsset = next((item for item in balances if item['name'] == data['name']), None)
             balanceAsset["qty"] = float(balanceUsd["qty"])
         except:
             balanceAsset = {}
             balanceAsset["qty"] = 0
-        return {'data':balanceUsd}
+        return {'data':balanceAsset}
 
 #create path to check balance
 class inventory(Resource):
