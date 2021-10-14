@@ -42,11 +42,13 @@ class balance(Resource):
     def get(self):
         data = request.get_json()
         balances = client.getaddressbalances(client.listaddresses()[0]['address'])
-        if balances != 0:
+        try:
             balanceAsset = next((item for item in balances if item['name'] == data['name']), None)
-            return {'data':balanceAsset['qty']}
-        else: 
-            return {'data':0}
+            balanceAsset["qty"] = float(balanceUsd["qty"])
+        except:
+            balanceAsset = {}
+            balanceAsset["qty"] = 0
+        return {'data':balanceUsd}
 
 #create path to check balance
 class inventory(Resource):
