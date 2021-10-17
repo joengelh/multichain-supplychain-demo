@@ -78,8 +78,10 @@ def history():
 def activate():
     if request.method == 'POST':
         name = request.form['name']
+        #take first 32 chars from name since more is not supported
+        cutName = name[0:32]
         sendApi = 'http://' + current_user.host + '/api/v1/activate'
-        result = requests.post(sendApi, json={"name":name}).json()
+        result = requests.post(sendApi, json={"name":cutName}).json()
         flash('Activation Successful!', category='success')
     api = 'http://' + current_user.host + '/api/v1/listActive'
     active = requests.get(api, json={}).json()

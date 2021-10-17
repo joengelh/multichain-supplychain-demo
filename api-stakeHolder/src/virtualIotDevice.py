@@ -89,8 +89,8 @@ class iot:
         return self.sensorsList
 
     def listItems(self, name):
-        if name in self.sensorsList:
+        try:
             self.client.subscribe(name)
             return self.client.liststreamitems(name)
-        else:
-            return "Sensor not active."
+        except:
+            return "No Records found."
