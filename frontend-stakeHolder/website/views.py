@@ -106,6 +106,8 @@ def deactivate():
 @views.route('/data', methods=['GET', 'POST'])
 @login_required
 def data():
+    api = 'http://' + current_user.host + '/api/v1/listActive'
+    active = requests.get(api, json={}).json()
     if request.method == 'POST':
         name = request.form['name']
         sendApi = 'http://' + current_user.host + '/api/v1/listItems'
@@ -113,9 +115,12 @@ def data():
         flash('Data Reading Successful!', category='success')
         return render_template("data.html", 
                 user=current_user,
-                items=result["data"])
+                items=result["data"],
+                active=active["data"])
     else:
-        return render_template("data.html", user=current_user)
+        return render_template("data.html", 
+            user=current_user,
+            active=active["data"])
 
 @views.route('/newExchange', methods=['GET', 'POST'])
 @login_required

@@ -2,9 +2,17 @@
 %}
 <h1 align="center">Get IoT Data</h1>
 <br />
+<ul class="list-group list-group-flush" id="notes">
+  {% for iot in active %}
+  <li class="list-group-item">
+	  <br /><p>Name: <strong>{{ iot }}</strong></p><br />
+  </li>
+  {% endfor %}
+</ul>
+<br /><br />
 <form method="POST">
 <div class="column1">
-  <h3 align = "center">Atomic Exchange ID</h3>
+  <h3 align = "center">IoT Device Name</h3>
   <textarea name="name" id="name" class="form-control"></textarea>
 </div> 
 <br />
