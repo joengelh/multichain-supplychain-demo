@@ -8,10 +8,12 @@ load_dotenv()
 nodes = ast.literal_eval(os.getenv('NODES'))
 
 for node in nodes:
-    client = c = mcrpc.RpcClient(
-        node['ip'], 
-        node['port'], 
-        node['user'],
-        node['password']
-    )
-    print(client.getinfo())
+    try:
+        client = c = mcrpc.RpcClient(
+            node['ip'], 
+            node['port'], 
+            node['user'],
+            node['password']
+        )
+        print(client.getinfo())
+    except: print(node, " offline")
